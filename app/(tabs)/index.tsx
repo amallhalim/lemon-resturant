@@ -4,7 +4,7 @@ import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
-
+import LittleLemonHeader  from "../../components/LittleLemonHeader"
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
@@ -16,9 +16,10 @@ export default function HomeScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
+        <ThemedText type="title">Welcome lemon 😂😂😂😂!</ThemedText>
         <HelloWave />
       </ThemedView>
+      <LittleLemonHeader/>
       <ThemedView style={styles.stepContainer}>
         <ThemedText type="subtitle">Step 1: Try it</ThemedText>
         <ThemedText>
