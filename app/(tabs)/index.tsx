@@ -13,44 +13,26 @@ import FeedbackForm from "../../pages/menu/FeedbackForm";
 export default function HomeScreen() {
   return (
     <MainLayout >
-
-
-      {/* <ParallaxScrollView
+      <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
         <Image
         source={require('@/assets/images/partial-react-logo.png')}
         style={styles.reactLogo}
         />
-      }> */}
-<FeedbackForm/>
-      <SignUP/>
+      }>
+{/* <FeedbackForm/>a */}
       <Login/>
+      {/* <SignUP/> */}
 
       <ThemedView style={styles.titleContainer}>
         <ThemedText type="title">Welcome lemon 😂94==😂!</ThemedText>
         <View>
-
-        
-        
-        <Text> hello from text </Text>
-        <Text> hello from text </Text>
-        <Text> hello from text </Text>
-        <Text> hello from text </Text>
-        
-        
- 
-        
-        <Text> hello from text </Text>
-        <Text> hello from text </Text>
-        <Text> hello from text </Text>
-        <Text> hello from text </Text>
-        
       </View>
         <HelloWave />
       </ThemedView>
    
-    {/* </ParallaxScrollView> */}
+    </ParallaxScrollView>
         </MainLayout>
     
   );
