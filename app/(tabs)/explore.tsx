@@ -1,4 +1,5 @@
 import { StyleSheet, Image, Platform, View } from 'react-native';
+import { Text } from 'react-native';
 
 import { Collapsible } from '@/components/Collapsible';
 import { ExternalLink } from '@/components/ExternalLink';
@@ -7,11 +8,12 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import MainLayout from '@/components/layouts/MainLayout';
-
+import MenuList from "../../pages/menu/MenuList"
+import MenuFlatList from "../../pages/menu/MenuFlatList"
 export default function TabTwoScreen() {
   return (
     <MainLayout >
-    <ThemedView style={styles.container}>
+    {/* <ThemedView style={styles.container}>
         <ParallaxScrollView
         headerBackgroundColor={{ light: '#D0D', dark: '#353636' }}
         headerImage={
@@ -24,14 +26,49 @@ export default function TabTwoScreen() {
         }
       >
      <View style={styles.headerContainer}>
+      <MenuList/>
         <ThemedText style={styles.contentText}>
-          Welcome to Tab Two! Scroll to see the parallax effect.
+          66666666-----------8888888888--------6666666Welcome to Tab Two! Scroll to see the parallax effect.
         </ThemedText>
+        <Text>   hello from text </Text>
         <View style={styles.footerContainer}>
       </View>
       </View>
       </ParallaxScrollView>
-    </ThemedView>
+    </ThemedView> */}
+    <View style={{width:"100%",height:"100%"}}>
+
+    <MenuFlatList/>
+    </View>
+<Text>666666666666666666666666666666666666666666666666</Text>
+    <View
+      style={[
+        // styles.container,
+        {
+          width:"100%",height:"100%",
+          // flex: 1,
+          padding: 20,
+          // Try setting 
+          // `flexDirection` to `"row"`.
+          // flexDirection: 'column',
+          flexDirection: 'row',
+          backgroundColor:"black"
+        },
+      ]}>
+      <View style={{flex: 2, backgroundColor: 'green'}} />
+      <View style={{flex: 1, backgroundColor: 'red'}} />
+      <View style={{flex: 1, backgroundColor: 'darkorange'}} />
+    </View>
+    <Text>666666666666666666666666666666666666666666666666</Text>
+
+
+
+
+
+
+
+
+
     </MainLayout>
 
   );

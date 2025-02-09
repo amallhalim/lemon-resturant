@@ -15,7 +15,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
     npx expo start
    ```
-
+<!-- press Ctrl + M for emulator), ensure Fast Refresh is enabled. -->
 to :
 
 C:\Users\lenovo\AppData\Local\Android\Sdk\emulator\emulator.exe -avd Medium_Phone_API_35 -wipe-data

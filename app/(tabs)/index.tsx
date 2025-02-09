@@ -1,28 +1,56 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, View } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
+import { Text } from 'react-native';
+import Login from "../../pages/login/Login";
+import SignUP from "../../pages/signUp/SignUP";
+import FeedbackForm from "../../pages/menu/FeedbackForm";
+
 export default function HomeScreen() {
   return (
     <MainLayout >
-      <ParallaxScrollView
+
+
+      {/* <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
         <Image
         source={require('@/assets/images/partial-react-logo.png')}
         style={styles.reactLogo}
         />
-      }>
-      
+      }> */}
+<FeedbackForm/>
+      <SignUP/>
+      <Login/>
+
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome lemon 😂😂😂==😂!</ThemedText>
+        <ThemedText type="title">Welcome lemon 😂94==😂!</ThemedText>
+        <View>
+
+        
+        
+        <Text> hello from text </Text>
+        <Text> hello from text </Text>
+        <Text> hello from text </Text>
+        <Text> hello from text </Text>
+        
+        
+ 
+        
+        <Text> hello from text </Text>
+        <Text> hello from text </Text>
+        <Text> hello from text </Text>
+        <Text> hello from text </Text>
+        
+      </View>
         <HelloWave />
       </ThemedView>
    
-    </ParallaxScrollView>
+    {/* </ParallaxScrollView> */}
         </MainLayout>
     
   );

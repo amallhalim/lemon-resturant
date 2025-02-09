@@ -22,7 +22,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'brown',
+    // backgroundColor: 'brown',
     flexDirection: 'column', 
   },
   content: {
