@@ -13,7 +13,7 @@ import MenuFlatList from "../../pages/menu/MenuFlatList"
 export default function TabTwoScreen() {
   return (
     <MainLayout >
-    {/* <ThemedView style={styles.container}>
+      {/* <ThemedView style={styles.container}>
         <ParallaxScrollView
         headerBackgroundColor={{ light: '#D0D', dark: '#353636' }}
         headerImage={
@@ -36,30 +36,29 @@ export default function TabTwoScreen() {
       </View>
       </ParallaxScrollView>
     </ThemedView> */}
-    <View style={{width:"100%",height:"100%"}}>
-
-    <MenuFlatList/>
-    </View>
-<Text>666666666666666666666666666666666666666666666666</Text>
-    <View
-      style={[
-        // styles.container,
-        {
-          width:"100%",height:"100%",
-          // flex: 1,
-          padding: 20,
-          // Try setting 
-          // `flexDirection` to `"row"`.
-          // flexDirection: 'column',
-          flexDirection: 'row',
-          backgroundColor:"black"
-        },
-      ]}>
-      <View style={{flex: 2, backgroundColor: 'green'}} />
-      <View style={{flex: 1, backgroundColor: 'red'}} />
-      <View style={{flex: 1, backgroundColor: 'darkorange'}} />
-    </View>
-    <Text>666666666666666666666666666666666666666666666666</Text>
+      <View style={{ width: "100%", height: "100%" }}>
+        <MenuFlatList />
+      </View>
+      <Text>666666666666666666666666666666666666666666666666</Text>
+      <View
+        style={[
+          // styles.container,
+          {
+            width: "100%", height: "100%",
+            // flex: 1,
+            padding: 20,
+            // Try setting 
+            // `flexDirection` to `"row"`.
+            // flexDirection: 'column',
+            flexDirection: 'row',
+            backgroundColor: "black"
+          },
+        ]}>
+        <View style={{ flex: 2, backgroundColor: 'green' }} />
+        <View style={{ flex: 1, backgroundColor: 'red' }} />
+        <View style={{ flex: 1, backgroundColor: 'darkorange' }} />
+      </View>
+      <Text>666666666666666666666666666666666666666666666666</Text>
 
 
 

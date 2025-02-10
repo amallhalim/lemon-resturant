@@ -22,6 +22,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    width:"100%",
     // backgroundColor: 'brown',
     flexDirection: 'column', 
   },
@@ -29,5 +30,7 @@ const styles = StyleSheet.create({
     flex: 1, 
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: 'green',
+
   },
 });
