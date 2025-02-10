@@ -15,6 +15,9 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
     npx expo start
    ```
+
+   npx expo start -c   start and cleaner all caches
+
 <!-- press Ctrl + M for emulator), ensure Fast Refresh is enabled. -->
 to :
 
