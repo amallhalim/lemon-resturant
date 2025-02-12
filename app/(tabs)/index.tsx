@@ -1,13 +1,21 @@
-import { Image, StyleSheet, View, Pressable, Button, Alert, TouchableHighlight, Text } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  View,
+  Pressable,
+  Button,
+  Alert,
+  Text,
+  TouchableHighlight,
+} from 'react-native';
 import { useState } from 'react';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
-import Login from "../../pages/login/Login";
 
 export default function HomeScreen() {
   const [count, setCount] = useState(0);
@@ -27,46 +35,103 @@ export default function HomeScreen() {
             />
           }
         >
-          <Login />
+          {/* Title Section */}
           <ThemedView style={styles.titleContainer}>
             <Button
-              title="Left button"
+              title="Left Button"
               onPress={() => Alert.alert('Left button pressed')}
             />
-            <ThemedText type="title">😂 Welcome</ThemedText>
-            {/* <Button title="Go to New Page" onPress={() => router.push('/w')} /> */}
-            {/* <Button title="Go to New Page" onPress={() => router.push('/w')} /> */}
+            <ThemedText type="title" style={styles.titleText}>
+              Welcome 🎉
+            </ThemedText>
           </ThemedView>
-            {/* <Button title="Go to profile" onPress={() => router.push('/Profile')} /> */}
-            <Button title="Go to profile99" onPress={() => router.push('/profile')} />
 
-          <View style={styles.pressableContainer}>
+          {/* Navigation Section */}
+          <View style={styles.navigationContainer}>
+            <Button
+              title="Go to Reservation"
+              onPress={() => router.push('/o')}
+              color="#007BFF"
+            />
+            <Button
+              title="Reservation 33"
+              onPress={() => router.push('/Reservation/Reservation')}
+              color="#007BFF"
+            />
+            <Button
+              title="Reservation 4cons=======t"
+              onPress={() => router.push('/Reservation/Reservation' as const)}
+              color="#007BFF"
+            />
+            <Button
+              title="Go to User"
+              onPress={() => router.push('/Hello')}
+              color="#007BFF"
+            />
+            <Button
+              title="Go to menu===="
+              onPress={() => router.push('/menu')}
+              color="#007BFF"
+            />
+            <Button
+              title="Profile"
+              onPress={() => router.push('/profile')}
+              color="#007BFF"
+            />
+            <Button
+              title="Hello Page"
+              onPress={() => router.push('/Hello')}
+              color="#007BFF"
+            />
+            <Button
+              title="Test Page"
+              onPress={() => router.push('/Test')}
+              color="#007BFF"
+            />
+            <Link href="/a" style={styles.link}>
+              Go to Page A
+            </Link>
+            <Link href="/b" style={styles.link}>
+              Go to Page B
+            </Link>
+            <Link
+              href={{
+                pathname: '/User',
+              }}
+              style={styles.link}
+            >
+              View User
+            </Link>
+          </View>
+
+          {/* Interactive Section */}
+          <View style={styles.interactiveSection}>
             <Pressable
               onPress={incrementCount}
               style={({ pressed }) => [
                 styles.pressable,
-                { backgroundColor: pressed ? 'rgb(210, 230, 255)' : 'white' },
+                { backgroundColor: pressed ? '#E0F7FF' : '#FFFFFF' },
               ]}
             >
-              {({ pressed }) => (
-                <Text style={styles.text}>{pressed ? 'Pressed!' : 'Press Me'}</Text>
-              )}
+              <Text style={styles.pressableText}>Press Me</Text>
             </Pressable>
-            <Pressable onPress={() => console.log('Button pressed!')}>
-              <Text style={styles.text}>I'm pressable!</Text>
-            </Pressable>
+            <TouchableHighlight
+              onPress={incrementCount}
+              underlayColor="#DDDDDD"
+            >
+              <View style={styles.touchableButton}>
+                <Text style={styles.touchableText}>Touch Here</Text>
+              </View>
+            </TouchableHighlight>
           </View>
 
-          <HelloWave />
-
-          <TouchableHighlight onPress={incrementCount}>
-            <View style={styles.button}>
-              <Text>Touch Here</Text>
-            </View>
-          </TouchableHighlight>
+          {/* Counter Display */}
           <View style={styles.countContainer}>
-            <Text style={styles.countText}>{count || null}</Text>
+            <Text style={styles.countText}>Count: {count}</Text>
           </View>
+
+          {/* Hello Wave Component */}
+          <HelloWave />
         </ParallaxScrollView>
       </View>
     </MainLayout>
@@ -76,45 +141,78 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'blue',
+    backgroundColor: '#F9F9F9',
     width: '100%',
   },
   titleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    backgroundColor: 'red',
-    width: '100%',
+    gap: 12,
+    padding: 16,
+    backgroundColor: '#EAF7F9',
+    borderRadius: 8,
+    marginVertical: 8,
+  },
+  titleText: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333333',
   },
   reactLogo: {
-    height: 178,
-    width: 290,
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
+    height: 150,
+    width: 150,
+    resizeMode: 'contain',
   },
-  pressableContainer: {
+  navigationContainer: {
     marginVertical: 16,
+    paddingHorizontal: 16,
+    gap: 10,
+  },
+  link: {
+    color: '#1E90FF',
+    fontSize: 16,
+    marginVertical: 6,
+  },
+  interactiveSection: {
+    marginVertical: 16,
+    alignItems: 'center',
   },
   pressable: {
     borderRadius: 8,
-    padding: 6,
-    backgroundColor: 'green',
+    padding: 12,
+    marginVertical: 8,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#007BFF',
   },
-  text: {
+  pressableText: {
     fontSize: 16,
+    fontWeight: '500',
+    color: '#333333',
   },
-  button: {
+  touchableButton: {
     alignItems: 'center',
-    backgroundColor: '#DDDDDD',
-    padding: 10,
+    backgroundColor: '#E8E8E8',
+    padding: 12,
+    borderRadius: 8,
+    marginVertical: 8,
+  },
+  touchableText: {
+    fontSize: 16,
+    fontWeight: '500',
+    color: '#333333',
   },
   countContainer: {
     alignItems: 'center',
-    padding: 10,
+    padding: 16,
+    marginVertical: 16,
+    backgroundColor: '#FFF0F6',
+    borderRadius: 8,
+    elevation: 2,
   },
   countText: {
-    color: '#FF00FF',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#D32F2F',
   },
 });
