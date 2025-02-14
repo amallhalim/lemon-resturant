@@ -18,14 +18,14 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         tabBarInactiveTintColor: 'gray',
-        headerShown:false,
-        // tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold' },
+        // headerShown:true,
+        tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold' },
         tabBarIconStyle: { marginBottom: 5 },
-        // headerShown: false,
+        headerShown: false,
         // headerStyle: { backgroundColor: Colors[colorScheme ?? 'light'].background },
         // headerTitleStyle: { fontWeight: 'bold', color: Colors[colorScheme ?? 'light'].text },
         // headerTintColor: Colors[colorScheme ?? 'light'].tint,
-        // tabBarButton: HapticTab,
+        tabBarButton: HapticTab,
         // tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
           ios: { position: 'absolute' },

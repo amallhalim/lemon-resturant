@@ -3,10 +3,9 @@ import {
   StyleSheet,
   View,
   Pressable,
-  Button,
-  Alert,
   Text,
-  TouchableHighlight,
+  TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import { useState } from 'react';
 import { Link, useRouter } from 'expo-router';
@@ -25,138 +24,77 @@ export default function HomeScreen() {
 
   return (
     <MainLayout>
-      <View style={styles.container}>
-        <ParallaxScrollView
-          headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-          headerImage={
-            <Image
-              source={require('@/assets/images/partial-react-logo.png')}
-              style={styles.reactLogo}
-            />
-          }
-        >
-          {/* Title Section */}
-          <ThemedView style={styles.titleContainer}>
-            <Button
-              title="Left Button"
-              onPress={() => Alert.alert('Left button pressed')}
-            />
-            <ThemedText type="title" style={styles.titleText}>
-              Welcome 🎉
-            </ThemedText>
-          </ThemedView>
+      <ParallaxScrollView
+        headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+        headerImage={
+          <Image
+            source={require('@/assets/images/partial-react-logo.png')}
+            style={styles.reactLogo}
+          />
+        }
+      >
+        {/* Welcome Section */}
+        <ThemedView style={styles.titleContainer}>
+          <ThemedText type="title" style={styles.titleText}>
+            Welcome 🎉
+          </ThemedText>
+          <ThemedText style={styles.subtitleText}>
+            Explore and navigate through the app
+          </ThemedText>
+        </ThemedView>
 
-          {/* Navigation Section */}
-          <View style={styles.navigationContainer}>
-            <Button
-              title="Go to Reservation"
-              onPress={() => router.push('/o')}
-              color="#007BFF"
-            />
-            <Button
-              title="Reservation 33"
-              onPress={() => router.push('/Reservation/Reservation')}
-              color="#007BFF"
-            />
-            <Button
-              title="Reservation 4cons=======t"
-              onPress={() => router.push('/Reservation/Reservation' as const)}
-              color="#007BFF"
-            />
-            <Button
-              title="Go to User"
-              onPress={() => router.push('/Hello')}
-              color="#007BFF"
-            />
-            <Button
-              title="Go to menu===="
-              onPress={() => router.push('/menu')}
-              color="#007BFF"
-            />
-            <Button
-              title="Profile"
-              onPress={() => router.push('/profile')}
-              color="#007BFF"
-            />
-            <Button
-              title="Hello Page"
-              onPress={() => router.push('/Hello')}
-              color="#007BFF"
-            />
-            <Button
-              title="Test Page"
-              onPress={() => router.push('/Test')}
-              color="#007BFF"
-            />
-            <Link href="/a" style={styles.link}>
-              Go to Page A
-            </Link>
-            <Link href="/b" style={styles.link}>
-              Go to Page B
-            </Link>
-            <Link
-              href={{
-                pathname: '/User',
-              }}
-              style={styles.link}
-            >
-              View User
-            </Link>
-          </View>
+        {/* Navigation Buttons */}
+        <View style={styles.navigationContainer}>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Reservation')}>
+            <Text style={styles.buttonText}>Go to Reservation</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/profile')}>
+            <Text style={styles.buttonText}>Profile</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/menu')}>
+            <Text style={styles.buttonText}>Menu</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Test')}>
+            <Text style={styles.buttonText}>Test Page</Text>
+          </TouchableOpacity>
+          <Link href="/a" style={styles.link}>Go to Page A</Link>
+          <Link href="/b" style={styles.link}>Go to Page B</Link>
+        </View>
 
-          {/* Interactive Section */}
-          <View style={styles.interactiveSection}>
-            <Pressable
-              onPress={incrementCount}
-              style={({ pressed }) => [
-                styles.pressable,
-                { backgroundColor: pressed ? '#E0F7FF' : '#FFFFFF' },
-              ]}
-            >
-              <Text style={styles.pressableText}>Press Me</Text>
-            </Pressable>
-            <TouchableHighlight
-              onPress={incrementCount}
-              underlayColor="#DDDDDD"
-            >
-              <View style={styles.touchableButton}>
-                <Text style={styles.touchableText}>Touch Here</Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-
-          {/* Counter Display */}
+        {/* Interactive Section */}
+        <View style={styles.interactiveSection}>
+          <Pressable onPress={incrementCount} style={styles.pressable}>
+            <Text style={styles.pressableText}>Tap to Increase Count</Text>
+          </Pressable>
           <View style={styles.countContainer}>
             <Text style={styles.countText}>Count: {count}</Text>
           </View>
+        </View>
 
-          {/* Hello Wave Component */}
-          <HelloWave />
-        </ParallaxScrollView>
-      </View>
+        {/* Hello Wave Component */}
+        <HelloWave />
+      </ParallaxScrollView>
     </MainLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F9F9F9',
-    width: '100%',
-  },
   titleContainer: {
-    flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    padding: 16,
+    padding: 20,
     backgroundColor: '#EAF7F9',
-    borderRadius: 8,
-    marginVertical: 8,
+    borderRadius: 10,
+    marginBottom: 20,
   },
   titleText: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: '#333333',
+    color: '#333',
+  },
+  subtitleText: {
+    fontSize: 16,
+    color: '#666',
+    marginTop: 5,
   },
   reactLogo: {
     height: 150,
@@ -164,9 +102,22 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
   },
   navigationContainer: {
-    marginVertical: 16,
-    paddingHorizontal: 16,
-    gap: 10,
+    marginVertical: 20,
+    alignItems: 'center',
+  },
+  navButton: {
+    backgroundColor: '#007BFF',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    marginBottom: 10,
+    alignItems: 'center',
+    width: '80%',
+  },
+  buttonText: {
+    color: '#FFF',
+    fontSize: 16,
+    fontWeight: '600',
   },
   link: {
     color: '#1E90FF',
@@ -174,39 +125,25 @@ const styles = StyleSheet.create({
     marginVertical: 6,
   },
   interactiveSection: {
-    marginVertical: 16,
     alignItems: 'center',
+    marginVertical: 20,
   },
   pressable: {
-    borderRadius: 8,
+    backgroundColor: '#E0F7FF',
     padding: 12,
-    marginVertical: 8,
-    alignItems: 'center',
+    borderRadius: 10,
     borderWidth: 1,
     borderColor: '#007BFF',
   },
   pressableText: {
     fontSize: 16,
+    color: '#333',
     fontWeight: '500',
-    color: '#333333',
-  },
-  touchableButton: {
-    alignItems: 'center',
-    backgroundColor: '#E8E8E8',
-    padding: 12,
-    borderRadius: 8,
-    marginVertical: 8,
-  },
-  touchableText: {
-    fontSize: 16,
-    fontWeight: '500',
-    color: '#333333',
   },
   countContainer: {
-    alignItems: 'center',
-    padding: 16,
-    marginVertical: 16,
+    marginTop: 10,
     backgroundColor: '#FFF0F6',
+    padding: 12,
     borderRadius: 8,
     elevation: 2,
   },
