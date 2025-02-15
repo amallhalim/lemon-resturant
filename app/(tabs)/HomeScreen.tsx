@@ -45,7 +45,7 @@ export default function HomeScreen() {
 
         {/* Navigation Buttons */}
         <View style={styles.navigationContainer}>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/WelcomeScreen')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
             <Text style={styles.buttonText}>Go to WelcomeScreen</Text>
           </TouchableOpacity>
           <Link href="/users/1"> go to user 1</Link>

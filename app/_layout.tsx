@@ -32,7 +32,7 @@ export default function RootLayout() {
       
       <Stack
         // Make the Welcome screen the first one
-        initialRouteName="Test"
+        initialRouteName="index"
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
