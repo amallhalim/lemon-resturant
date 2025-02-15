@@ -42,7 +42,7 @@ export default function RootLayout() {
         options={{ headerShown: true, title: 'User Profile' }}
       />
         <Stack.Screen
-        name="WelcomeScreen"
+        name="index"
         options={{ headerShown: true, title: 'WelcomeScreen' ,headerStyle:{backgroundColor:"red"}}}
       />
         <Stack.Screen name="+not-found" />
