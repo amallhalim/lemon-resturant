@@ -30,8 +30,21 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       
-      <Stack >
+      <Stack
+        // Make the Welcome screen the first one
+        initialRouteName="index"
+        screenOptions={{ headerShown: false }}
+      >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="Test" /> 
+        <Stack.Screen
+        name="users/[id]"
+        options={{ headerShown: true, title: 'User Profile' }}
+      />
+        <Stack.Screen
+        name="index"
+        options={{ headerShown: true, title: 'WelcomeScreen' ,headerStyle:{backgroundColor:"red"}}}
+      />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

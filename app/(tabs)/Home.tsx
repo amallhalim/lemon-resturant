@@ -16,7 +16,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
 
-export default function HomeScreen() {
+export default function Home() {
   const [count, setCount] = useState(0);
   const router = useRouter();
 
@@ -45,13 +45,18 @@ export default function HomeScreen() {
 
         {/* Navigation Buttons */}
         <View style={styles.navigationContainer}>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
+            <Text style={styles.buttonText}>Go to WelcomeScreen</Text>
+          </TouchableOpacity>
+          <Link href="/users/1"> go to user 1</Link>
+          <Link href="/users/5"> go to user 5</Link>
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Reservation')}>
             <Text style={styles.buttonText}>Go to Reservation</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/profile')}>
             <Text style={styles.buttonText}>Profile</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/menu')}>
+          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Menu')}>
             <Text style={styles.buttonText}>Menu</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Test')}>
