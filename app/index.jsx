@@ -1,13 +1,23 @@
 // app/AuthScreen.tsx (or rename to index.tsx if you want it as the root screen)
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { useRouter } from 'expo-router';
-
+import { Colors } from "../constants/Colors"
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import splashImg from "../assets/logo/Splash.png"
 export default function WelcomeScreen() {
   const router = useRouter();
+  const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
   return (
-    <View style={styles.container}>
+
+    <SafeAreaProvider>
+    <SafeAreaView style={styles.container} edges={['left', 'right']}>
+      <ImageBackground source={splashImg} resizeMode="cover" style={styles.image}>
+        <Text style={styles.text}>Inside</Text>
+        <View style={styles.container}>
+      <FontAwesome5 name="lemon" size={24} color="black" />
       <TouchableOpacity
         style={styles.button}
         onPress={() => router.push('/Home')}
@@ -16,20 +26,20 @@ export default function WelcomeScreen() {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push('/Home')}
+        onPress={() => router.push('/OnboardingScreen')}
       >
-        <Text style={styles.buttonText}>Home</Text>
+        <Text style={styles.buttonText}>OnboardingScreen</Text>
       </TouchableOpacity>
       <Text style={styles.title}>Welcome!</Text>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push('/login')}
+        onPress={() => router.push('/Login')}
       >
         <Text style={styles.buttonText}>Log In</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push('/signup')}
+        onPress={() => router.push('/SignUp')}
       >
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
@@ -40,17 +50,28 @@ export default function WelcomeScreen() {
         <Text style={styles.buttonText}>Continue as Guest</Text>
       </TouchableOpacity>
     </View>
+      </ImageBackground>
+    </SafeAreaView>
+
+  </SafeAreaProvider>
+
+  
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: '#F5F5F5',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // padding: 20,
+    // backgroundColor: Colors.light.green[800],
   },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+
   title: {
     fontSize: 28,
     fontWeight: 'bold',

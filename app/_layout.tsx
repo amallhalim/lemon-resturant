@@ -41,10 +41,10 @@ export default function RootLayout() {
         name="users/[id]"
         options={{ headerShown: true, title: 'User Profile' }}
       />
-        <Stack.Screen
+        {/* <Stack.Screen
         name="index"
         options={{ headerShown: true, title: 'WelcomeScreen' ,headerStyle:{backgroundColor:"red"}}}
-      />
+      /> */}
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
