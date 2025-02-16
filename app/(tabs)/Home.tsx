@@ -16,7 +16,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
 
-export default function HomeScreen() {
+export default function Home() {
   const [count, setCount] = useState(0);
   const router = useRouter();
 

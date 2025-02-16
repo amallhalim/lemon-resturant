@@ -10,15 +10,15 @@ export default function WelcomeScreen() {
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push('/HomeScreen')}
+        onPress={() => router.push('/Home')}
       >
-        <Text style={styles.buttonText}>HomeScreen</Text>
+        <Text style={styles.buttonText}>Home</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => router.push('/HomeScreen')}
+        onPress={() => router.push('/Home')}
       >
-        <Text style={styles.buttonText}>HomeScreen</Text>
+        <Text style={styles.buttonText}>Home</Text>
       </TouchableOpacity>
       <Text style={styles.title}>Welcome!</Text>
       <TouchableOpacity
