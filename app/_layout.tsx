@@ -1,53 +1,35 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { useColorScheme } from '@/hooks/useColorScheme';
+import AppLayout from '../components/layouts/AppLayout';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+ 
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
+ 
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      
-      <Stack
-        // Make the Welcome screen the first one
-        initialRouteName="index"
-        screenOptions={{ headerShown: false }}
-      >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="Test" /> 
-        <Stack.Screen
-        name="users/[id]"
-        options={{ headerShown: true, title: 'User Profile' }}
-      />
-        {/* <Stack.Screen
-        name="index"
-        options={{ headerShown: true, title: 'WelcomeScreen' ,headerStyle:{backgroundColor:"red"}}}
-      /> */}
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
+      <AppLayout> 
+        <Stack
+          initialRouteName="index"
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="Test" /> 
+          <Stack.Screen
+            name="users/[id]"
+            options={{ headerShown: true, title: 'User Profile' }}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </AppLayout>
     </ThemeProvider>
   );
 }
