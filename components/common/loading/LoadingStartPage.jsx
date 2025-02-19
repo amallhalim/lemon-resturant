@@ -2,13 +2,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Colors } from "../constants/Colors"
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import splashImg from "../assets/logo/Splash.png"
-export default function LoadingStart() {
-  const router = useRouter();
-  const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
+import splashImg from "../../../assets/logo/Splash.png"
+export default function HomeLoadingStartPagePage() {
+
 
   return (
 
