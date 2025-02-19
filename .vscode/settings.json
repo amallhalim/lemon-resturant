@@ -1,0 +1,10 @@
+{
+    "diffEditor.codeLens": true,
+    "files.autoSave": "onFocusChange",
+    "files.autoSaveWhenNoErrors": true,
+    "workbench.colorTheme": "Monokai",
+    "autoimport.showNotifications": true,
+    "eslint.debug": true,
+    "eslint.format.enable": false,
+    "search.seedWithNearestWord": true
+}
