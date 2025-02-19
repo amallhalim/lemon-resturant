@@ -22,14 +22,15 @@ const defaultValues = {
 export default function Login() {
   const router = useRouter();
 
-
-  const { control,handleSubmit, watch,formState: { errors },} = useForm({defaultValues: defaultValues,resolver: yupResolver(validationSchema)
+  const { control, handleSubmit, watch, formState: { errors }, } = useForm({
+    defaultValues: defaultValues, resolver: yupResolver(validationSchema)
   })
   const onSubmit = (data) => {
     console.log("onsubmit ===", data);
+    router.navigate("/Home")
   };
 
-  console.log(watch("example"));
+  // console.log(watch("name"));
 
   return (
     <ImageBackground
@@ -38,7 +39,7 @@ export default function Login() {
       style={styles.image}
     >
       <View style={styles.content}>
-        <Text style={styles.title}>Login to BUI Food99</Text>
+        <Text style={styles.title}>Login to BUI Food</Text>
 
         <TouchableOpacity style={styles.socialButton}>
           <Text style={styles.socialButtonText}>Continue with Google</Text>
@@ -66,7 +67,6 @@ export default function Login() {
           }}
         />
         {errors.email && <ErrorText text={errors.email.message} />}
-
         <Controller
           name='password'
           control={control}
@@ -99,20 +99,14 @@ export default function Login() {
           )}
         />
         {errors.name && <ErrorText text={errors.name.message} />}
-
-        <TouchableOpacity>
-          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-        </TouchableOpacity>
-
         <TouchableOpacity
-          style={styles.button}
-        // onPress={handleSubmit(onSubmit)} // Call handleSubmit directly on button press
+          style={[styles.button, { marginTop: 20 ,marginBottom:0}]}
+          onPress={handleSubmit(onSubmit)}
         >
           <Text style={styles.buttonText}>Continue</Text>
-          <Button style={styles.buttonText}
-            title="Continue" onPress={handleSubmit(onSubmit)}
-          />
-
+        </TouchableOpacity>
+        <TouchableOpacity style={{ width: '100%',}}>
+          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -188,11 +182,12 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 10,
     color: Colors.light.font.lightGray
-    // color: "red"
   },
   forgotPasswordText: {
     color: Colors.light.primary[800],
     marginBottom: 20,
+    marginTop: 5,
+    textAlign: 'right',
   },
   button: {
     width: '100%',
@@ -205,11 +200,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: Colors.light.font.white,
     fontSize: 18,
+    marginTop:"20px"
   },
   guestButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginBottom:10,
   },
   guestButtonText: {
     color: Colors.light.primary[800],

@@ -4,9 +4,6 @@ import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from 'react-native-
 
 const AppLayout = ({ children }) => {
   const { top, bottom, left, right } = useSafeAreaInsets();
-  console.log("🚀 ~ AppLayout ~ top, bottom, left, right:", top, bottom, left, right)
-
-
 
   return (
     <SafeAreaProvider>
