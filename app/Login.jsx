@@ -1,67 +1,136 @@
-import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View, Button } from 'react-native';
 import React from 'react';
 import { Colors } from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import BackGroundFood3 from "../assets/background/loginBG.jpg"
+import { Controller, useForm } from 'react-hook-form';
+import { object, string } from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import ErrorText from '../components/common/text/ErrorText';
+
+const validationSchema = object({
+  password: string().trim().required("Password is required."),
+  email: string().trim().required("Email is required.").email("Please enter a valid email address."),
+  name: string().trim().required("Name is required.").min(3, "Name should have at least 3 characters.").max(20, "Name should not exceed 20 characters.")
+});
+const defaultValues = {
+  password: "",
+  email: "",
+  name: "",
+}
 
 export default function Login() {
   const router = useRouter();
 
+
+  const { control,handleSubmit, watch,formState: { errors },} = useForm({defaultValues: defaultValues,resolver: yupResolver(validationSchema)
+  })
+  const onSubmit = (data) => {
+    console.log("onsubmit ===", data);
+  };
+
+  console.log(watch("example"));
+
   return (
-        <ImageBackground
-          source={BackGroundFood3}
-          resizeMode="cover"
-          style={styles.image}
-        >
-          <View style={styles.content}>
-            <Text style={styles.title}>Login to BUI Food99</Text>
+    <ImageBackground
+      source={BackGroundFood3}
+      resizeMode="cover"
+      style={styles.image}
+    >
+      <View style={styles.content}>
+        <Text style={styles.title}>Login to BUI Food99</Text>
 
-            <TouchableOpacity style={styles.socialButton}>
-              <Text style={styles.socialButtonText}>Continue with Google</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.socialButton}>
-              <Text style={styles.socialButtonText}>Continue with Apple</Text>
-            </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Text style={styles.socialButtonText}>Continue with Google</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.socialButton}>
+          <Text style={styles.socialButtonText}>Continue with Apple</Text>
+        </TouchableOpacity>
 
-            <Text style={styles.orText}>Or</Text>
+        <Text style={styles.orText}>Or</Text>
+        <Controller
+          control={control}
+          name="email"
+          render={({ field }) => {
+            const { onChange, onBlur, value, ref, name } = field;
+            return (
+              <TextInput
+                style={[styles.input, errors.email && styles.errorInput]}
+                placeholder="Email"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                ref={ref}
+              />
+            );
+          }}
+        />
+        {errors.email && <ErrorText text={errors.email.message} />}
 
+        <Controller
+          name='password'
+          control={control}
+          render={({ field: { onChange, onBlur, value } }) => (
             <TextInput
-              style={styles.input}
-              placeholder="Username or Email"
-              placeholderTextColor={Colors.light.font.lightGray}
-            />
-            <TextInput
-              style={styles.input}
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              style={[styles.input, errors.password && styles.errorInput]}
               placeholder="Password"
+              labal="Password"
               secureTextEntry={true}
               placeholderTextColor={Colors.light.font.lightGray}
             />
+          )
+          }
+        />
+        {errors.password && <ErrorText text={errors.password.message} />}
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextInput
+              style={[styles.input, errors.name && styles.errorInput]}
+              placeholder="First name"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+            />
+          )}
+        />
+        {errors.name && <ErrorText text={errors.name.message} />}
 
-            <TouchableOpacity>
-              <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-            </TouchableOpacity>
+        <TouchableOpacity>
+          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+        </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={() => console.log('Continue pressed')}>
-              <Text style={styles.buttonText}>Continue</Text>
-            </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+        // onPress={handleSubmit(onSubmit)} // Call handleSubmit directly on button press
+        >
+          <Text style={styles.buttonText}>Continue</Text>
+          <Button style={styles.buttonText}
+            title="Continue" onPress={handleSubmit(onSubmit)}
+          />
 
-            <TouchableOpacity
-              style={styles.guestButton}
-              onPress={() => console.log('Continue as Guest pressed')}>
-              <Text style={styles.guestButtonText}>Continue as Guest</Text>
-            </TouchableOpacity>
+        </TouchableOpacity>
 
-            <View style={styles.signUpContainer}>
-              <Text style={styles.signUpText}>Don't have a BUI FOOD account?</Text>
-              <TouchableOpacity onPress={() => router.push('/SignUp')}>
-                <Text style={styles.signUpLink}>Sign Up</Text>
-              </TouchableOpacity>
-            </View>
+        <TouchableOpacity
+          style={styles.guestButton}
+          onPress={() => router.push('/Home')}
+        >
+          <Text style={styles.guestButtonText}>Continue as Guest</Text>
+        </TouchableOpacity>
 
-          </View>
-        </ImageBackground>
-
-      );
+        <View style={styles.signUpContainer}>
+          <Text style={styles.signUpText}>Don't have a BUI FOOD account?</Text>
+          <TouchableOpacity onPress={() => router.push('/SignUp')}>
+            <Text style={styles.signUpLink}>Sign Up</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ImageBackground>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -72,8 +141,6 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    width: '100%',
-    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -95,7 +162,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: Colors.light.font.secondary,
     textShadowOffset: { width: 0, height: 0 },
-    textShadowRadius: 10,
+    textShadowRadius: 2,
   },
   socialButton: {
     backgroundColor: Colors.light.primary[800],
@@ -121,6 +188,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 10,
     color: Colors.light.font.lightGray
+    // color: "red"
   },
   forgotPasswordText: {
     color: Colors.light.primary[800],
@@ -148,7 +216,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     textDecorationLine: 'underline',
-
   },
   signUpContainer: {
     flexDirection: 'row',
@@ -161,5 +228,11 @@ const styles = StyleSheet.create({
     color: Colors.light.primary[800],
     fontWeight: 'bold',
     marginLeft: 5,
+  },
+  errorInput: {
+    borderColor: 'red',
+    borderWidth: 1,
+    marginBottom: 0
+
   },
 });
