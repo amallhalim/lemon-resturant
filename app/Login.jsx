@@ -16,7 +16,6 @@ const validationSchema = object({
 const defaultValues = {
   password: "",
   email: "",
-  name: "",
 }
 
 export default function Login() {
@@ -53,7 +52,7 @@ export default function Login() {
           control={control}
           name="email"
           render={({ field }) => {
-            const { onChange, onBlur, value, ref, name } = field;
+            const { onChange, onBlur, value, ref} = field;
             return (
               <TextInput
                 style={[styles.input, errors.email && styles.errorInput]}
@@ -85,25 +84,12 @@ export default function Login() {
           }
         />
         {errors.password && <ErrorText text={errors.password.message} />}
-        <Controller
-          control={control}
-          name="name"
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={[styles.input, errors.name && styles.errorInput]}
-              placeholder="First name"
-              onBlur={onBlur}
-              onChangeText={onChange}
-              value={value}
-            />
-          )}
-        />
-        {errors.name && <ErrorText text={errors.name.message} />}
+
         <TouchableOpacity
           style={[styles.button, { marginTop: 20 ,marginBottom:0}]}
           onPress={handleSubmit(onSubmit)}
         >
-          <Text style={styles.buttonText}>Continue</Text>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ width: '100%',}}>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
