@@ -4,13 +4,14 @@ import { Colors } from '../constants/Colors';
 import { useRouter } from 'expo-router';
 import BackGroundFood3 from "../assets/background/loginBG.jpg"
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import AppLayout from '../components/layouts/AppLayout';
 
 export default function Login() {
   const router = useRouter();
 
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container} edges={['left', 'right',"top",'left']}>
+      <AppLayout>
+        
         <ImageBackground
           source={BackGroundFood3}
           resizeMode="cover"
@@ -63,9 +64,9 @@ export default function Login() {
 
           </View>
         </ImageBackground>
-      </SafeAreaView>
-    </SafeAreaProvider>
-  );
+
+        </AppLayout>
+      );
 }
 
 const styles = StyleSheet.create({
