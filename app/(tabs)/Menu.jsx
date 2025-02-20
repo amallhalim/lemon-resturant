@@ -1,44 +1,17 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
+import FoodItems from "../../StaticData/FoodItems"
+import { Colors } from '@/constants/Colors';
 
 export default function Menu() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
-
-      {/* Starters */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>🥗 Starters</Text>
-        <MenuItem name="Caesar Salad" price="$5.99" />
-        <MenuItem name="Bruschetta" price="$6.49" />
-        <MenuItem name="Stuffed Mushrooms" price="$7.99" />
+      <View style={styles.row}>
+      {FoodItems.map((dish, index) => (
+        <Card key={index} img={dish.img} name={dish.name} des={dish.des} price={dish.price} />
+      ))}
       </View>
-
-      {/* Main Course */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>🍛 Main Course</Text>
-        <MenuItem name="Grilled Chicken" price="$12.99" />
-        <MenuItem name="Pasta Alfredo" price="$11.49" />
-        <MenuItem name="Steak with Veggies" price="$18.99" />
-      </View>
-
-      {/* Desserts */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>🍰 Desserts</Text>
-        <MenuItem name="Chocolate Lava Cake" price="$6.99" />
-        <MenuItem name="Cheesecake" price="$5.99" />
-        <MenuItem name="Ice Cream Sundae" price="$4.49" />
-      </View>
-
-      {/* Drinks */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>🥤 Drinks</Text>
-        <MenuItem name="Fresh Lemonade" price="$3.99" />
-        <MenuItem name="Iced Coffee" price="$4.49" />
-        <MenuItem name="Smoothie" price="$5.99" />
-      </View>
-
-      {/* Order Button */}
       <TouchableOpacity style={styles.orderButton}>
         <Text style={styles.orderText}>Order Now</Text>
       </TouchableOpacity>
@@ -46,11 +19,18 @@ export default function Menu() {
   );
 }
 
-// Menu Item Component
-const MenuItem = ({ name, price }) => (
-  <View style={styles.menuItem}>
-    <Text style={styles.menuItemText}>{name}</Text>
-    <Text style={styles.menuItemPrice}>{price}</Text>
+const Card = ({ img, name, des, price }) => (
+    <View style={styles.card}>
+      <Text style={styles.cardTitle}>{name}</Text>
+      <Image
+        style={styles.tinyLogo}
+        source={img}
+      />
+      <View style={styles.menuItem}>
+        <Text style={styles.menuItemText}>{name}</Text>
+        <Text style={styles.menuItemText}>{des}</Text>
+        <Text style={styles.menuItemPrice}>{price}</Text>
+    </View>
   </View>
 );
 
@@ -59,6 +39,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F5F5F5',
     padding: 16,
+  }, tinyLogo: {
+    width: 100,
+    height: 100,
+  },
+  row: {
+    flex: 1,
+    width:"100%",
+    flexDirection: 'row',  
+    justifyContent: 'space-between',  
+    marginBottom: 20,
+    flexWrap :"wrap",
   },
   header: {
     fontSize: 26,
@@ -67,17 +58,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: '#333',
   },
-  section: {
+  card: {
+    width:"48%",
+    minWidth: '48%',
+  height: '50px',
+    margin:"1%",
+    flex: 1,
     marginBottom: 20,
     backgroundColor: '#FFF',
     padding: 10,
     borderRadius: 8,
-    elevation: 2,
   },
-  sectionTitle: {
+  cardTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#007BFF',
+    color: Colors.light.primary[800],
     marginBottom: 10,
   },
   menuItem: {
@@ -97,10 +92,11 @@ const styles = StyleSheet.create({
     color: '#444',
   },
   orderButton: {
-    backgroundColor: '#007BFF',
+    backgroundColor: Colors.light.primary[800],
     paddingVertical: 12,
     alignItems: 'center',
     borderRadius: 10,
+    margin :50,
     marginTop: 20,
   },
   orderText: {
