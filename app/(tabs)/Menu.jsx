@@ -8,7 +8,8 @@ export default function Menu() {
   // console.log(JSON.stringify(allOrderData, null, 2));
 
   const onchangeDishCount = (newCount) => {
-    setOrderData((prev) => { return ( [ ...prev, { count: newCount }]) }
+    setOrderData((prev) => {
+      return ( [ ...prev, { count: newCount }]) }
     )
   }
   const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
@@ -50,18 +51,17 @@ export default function Menu() {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
-      <ScrollView style={styles.scrollView}>
-
+        <ScrollView>
       <View style={styles.row}>
         {FoodItems.map((dish, index) => (
           <Card key={index} id={dish.id}
-            img={dish.img} name={dish.name}
-            des={dish.des} price={dish.price}
-            onchangeDishCount={onchangeDishCount}
-            />
-          ))}
+          img={dish.img} name={dish.name}
+          des={dish.des} price={dish.price}
+          onchangeDishCount={onchangeDishCount}
+          />
+        ))}
       </View>
-          </ScrollView>
+        </ScrollView>
       <TouchableOpacity style={styles.orderButton}>
         <Text style={styles.orderText}>Order Now</Text>
       </TouchableOpacity>
@@ -77,12 +77,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-    padding: 16,
-    position: 'relative', // To contain the absolute-positioned order button
-
-  },
-  scrollView: {
-    backgroundColor: 'pink',
+    padding: 16,position:"relative",
+    height:"100%"
   },
   tinyLogo: {
     width: 122,
@@ -137,14 +133,16 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     alignItems: 'center',
     borderRadius: 10,
-    margin: 50,
-    marginTop: 20,
+    margin: 30,
+    position:"absolute",
+    bottom: 0,
+    left: 20,
+    right: 20,
   },
   orderText: {
     fontSize: 18,
     color: '#FFF',
     fontWeight: 'bold',
-    position:"absolute"
   },
   ContainButton: {
     width: 80,
