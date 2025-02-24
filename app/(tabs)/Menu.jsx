@@ -1,17 +1,67 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Button } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import FoodItems from "../../StaticData/FoodItems"
 import { Colors } from '@/constants/Colors';
 
 export default function Menu() {
+  const [allOrderData, setOrderData] = useState([])
+  // console.log(JSON.stringify(allOrderData, null, 2));
+
+  const onchangeDishCount = (newCount) => {
+    setOrderData((prev) => { return ( [ ...prev, { count: newCount }]) }
+    )
+  }
+  const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
+    const [count, useCount] = useState(0);
+    console.log("🚀 ~ Card ~ count:", count)
+    return (
+      <View style={styles.card}>
+        <Image
+          style={styles.tinyLogo}
+          source={img}
+        />
+        <Text style={styles.cardTitle}>{name}</Text>
+        <View style={styles.menuItem}>
+          <Text style={styles.menuItemPrice}>{price}</Text>
+          <TouchableOpacity style={styles.button} onPress={() => {
+            useCount(count + 1)
+            onchangeDishCount(
+              { img, name, des, price, id, count: count + 1 }
+            )
+          }
+          }>
+            {count === 0 ?(
+                 <View style={styles.ContainButton}>
+                 <Text style={styles.buttonText}>Add +</Text>
+               </View>
+            ):(
+              <View style={styles.ContainButton}>
+                <Text style={styles.circleButton}>-</Text>
+                <Text style={styles.buttonText}>{count == 0 ? 0 : count}</Text>
+                <Text style={styles.circleButton}> +</Text>
+              </View>
+              )}
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  
+  };
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
+      <ScrollView style={styles.scrollView}>
+
       <View style={styles.row}>
         {FoodItems.map((dish, index) => (
-          <Card key={index} img={dish.img} name={dish.name} des={dish.des} price={dish.price} />
-        ))}
+          <Card key={index} id={dish.id}
+            img={dish.img} name={dish.name}
+            des={dish.des} price={dish.price}
+            onchangeDishCount={onchangeDishCount}
+            />
+          ))}
       </View>
+          </ScrollView>
       <TouchableOpacity style={styles.orderButton}>
         <Text style={styles.orderText}>Order Now</Text>
       </TouchableOpacity>
@@ -19,33 +69,25 @@ export default function Menu() {
   );
 }
 
-const Card = ({ img, name, des, price }) => (
-  <View style={styles.card}>
-    <Image
-      style={styles.tinyLogo}
-      source={img}
-    />
-    <Text style={styles.cardTitle}>{name}</Text>
-    <View style={styles.menuItem}>
-      <Text style={styles.menuItemPrice}>{price}</Text>
-      <TouchableOpacity style={styles.button} onPress={() => console.log('Button pressed')}>
-      <Text style={styles.buttonText}>+</Text>
-    </TouchableOpacity>
-    </View>
-  </View>
-);
+
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
     padding: 16,
-  }, 
+    position: 'relative', // To contain the absolute-positioned order button
+
+  },
+  scrollView: {
+    backgroundColor: 'pink',
+  },
   tinyLogo: {
     width: 122,
     height: 80,
     borderRadius: 20,
-
   },
   row: {
     flex: 1,
@@ -63,33 +105,23 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   card: {
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    // width:"48%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     minWidth: '43%',
     height: 200,
     margin: "3%",
     flex: 1,
     marginBottom: 20,
     backgroundColor: '#FFF',
-    // backgroundColor: 'red',
     padding: 2,
     borderRadius: 30,
-    // borderRadius:"
   },
   cardTitle: {
     fontSize: 15,
     fontWeight: 'bold',
     color: Colors.light.primary[800],
     marginBottom: 10,
-  },
-  menuItem: {
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // paddingVertical: 8,
-    // borderBottomWidth: 1,
-    // borderBottomColor: '#DDD',
   },
   menuItemText: {
     fontSize: 16,
@@ -112,19 +144,51 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#FFF',
     fontWeight: 'bold',
+    position:"absolute"
+  },
+  ContainButton: {
+    width: 80,
+    height: 36,
+    padding:3,
+    color: Colors.light.white, 
+    backgroundColor: Colors.light.primary[800],
+    borderWidth:1,
+    borderRadius: 100, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    display: "flex", justifyContent: 'space-between' ,flexDirection:'row'
   },
   button: {
-    width:40,
-    height:40,
-    backgroundColor: Colors.light.primary[800], // Background color
-    // padding: 2, // Padding around the text
-    borderRadius: 100, // Rounded corners
-    alignItems: 'center', // Center text horizontally
-    justifyContent: 'center', // Center text 
+    width: 40,
+    height: 40,
+    color: Colors.light.primary[800],
+    borderRadius: 100, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+  },
+  circleButton: {
+    width: 20,
+    height: 20,
+    backgroundColor: Colors.light.white,
+    color: Colors.light.primary[800], 
+    borderRadius: 10, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    fontSize: 16,
+    fontWeight:500, 
+    textAlign: "center", 
   },
   buttonText: {
-    fontSize: 30,
-    color: '#fff', // Text color
+    fontSize: 20,
+    flex:1,padding:2,
+    color: Colors.light.white,
+    textAlign: "center", 
+
   },
 });
 
+
+
+// order --------
+// id 
+// count 

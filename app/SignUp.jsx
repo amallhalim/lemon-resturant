@@ -29,7 +29,7 @@ export default function SignUp() {
     console.log("Form Data:", data);
     router.push('/Home');
   };
-
+// uef
   return (
     <ImageBackground
       source={BackGroundFood3}

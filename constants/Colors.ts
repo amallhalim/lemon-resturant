@@ -52,7 +52,8 @@ export const Colors = {
     },
     green: {
       800: '#008C8C',
-    }
+    },
+    white: "#FFFFFF"
 
 
   },
