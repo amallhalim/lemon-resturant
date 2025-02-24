@@ -12,56 +12,18 @@ export default function Menu() {
       return ( [ ...prev, { count: newCount }]) }
     )
   }
-  const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
-    const [count, useCount] = useState(0);
-    console.log("🚀 ~ Card ~ count:", count)
-    return (
-      <View style={styles.card}>
-        <Image
-          style={styles.tinyLogo}
-          source={img}
-        />
-        <Text style={styles.cardTitle}>{name}</Text>
-        <View style={styles.menuItem}>
-          <Text style={styles.menuItemPrice}>{price}</Text>
-          <TouchableOpacity style={styles.button} onPress={() => {
-            useCount(count + 1)
-            onchangeDishCount(
-              { img, name, des, price, id, count: count + 1 }
-            )
-          }
-          }>
-            {count === 0 ?(
-                 <View style={styles.ContainButton}>
-                 <Text style={styles.buttonText}>Add +</Text>
-               </View>
-            ):(
-              <View style={styles.ContainButton}>
-                <Text style={styles.circleButton}>-</Text>
-                <Text style={styles.buttonText}>{count == 0 ? 0 : count}</Text>
-                <Text style={styles.circleButton}> +</Text>
-              </View>
-              )}
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
-  
-  };
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
-        <ScrollView>
       <View style={styles.row}>
         {FoodItems.map((dish, index) => (
           <Card key={index} id={dish.id}
-          img={dish.img} name={dish.name}
-          des={dish.des} price={dish.price}
-          onchangeDishCount={onchangeDishCount}
+            img={dish.img} name={dish.name}
+            des={dish.des} price={dish.price}
+            onchangeDishCount={onchangeDishCount}
           />
         ))}
       </View>
-        </ScrollView>
       <TouchableOpacity style={styles.orderButton}>
         <Text style={styles.orderText}>Order Now</Text>
       </TouchableOpacity>
@@ -69,7 +31,42 @@ export default function Menu() {
   );
 }
 
+const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
+  const [count, useCount] = useState(0);
+  console.log("🚀 ~ Card ~ count:", count)
+  return (
+    <View style={styles.card}>
+      <Image
+        style={styles.tinyLogo}
+        source={img}
+      />
+      <Text style={styles.cardTitle}>{name}</Text>
+      <View style={styles.menuItem}>
+        <Text style={styles.menuItemPrice}>{price}</Text>
+        <TouchableOpacity style={styles.button} onPress={() => {
+          useCount(count + 1)
+          onchangeDishCount(
+            { img, name, des, price, id, count: count + 1 }
+          )
+        }
+        }>
+          {count === 0 ?(
+               <View style={styles.ContainButton}>
+               <Text style={styles.buttonText}>Add +</Text>
+             </View>
+          ):(
+            <View style={styles.ContainButton}>
+              <Text style={styles.circleButton}>-</Text>
+              <Text style={styles.buttonText}>{count == 0 ? 0 : count}</Text>
+              <Text style={styles.circleButton}> +</Text>
+            </View>
+            )}
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
 
+};
 
 
 
@@ -133,7 +130,8 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     alignItems: 'center',
     borderRadius: 10,
-    margin: 30,
+    margin: 0,
+    // marginTop: 20,
     position:"absolute",
     bottom: 0,
     left: 20,
