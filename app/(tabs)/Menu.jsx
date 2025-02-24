@@ -12,6 +12,43 @@ export default function Menu() {
       return ( [ ...prev, { count: newCount }]) }
     )
   }
+  const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
+    const [count, useCount] = useState(0);
+    console.log("🚀 ~ Card ~ count:", count)
+    return (
+      <View style={styles.card}>
+        <Image
+          style={styles.tinyLogo}
+          source={img}
+        />
+        <Text style={styles.cardTitle}>{name}</Text>
+        <View style={styles.menuItem}>
+          <Text style={styles.menuItemPrice}>{price}</Text>
+          <TouchableOpacity style={styles.button} onPress={() => {
+            useCount(count + 1)
+            onchangeDishCount(
+              { img, name, des, price, id, count: count + 1 }
+            )
+          }
+          }>
+            {count === 0 ?(
+                 <View style={styles.ContainButton}>
+                 <Text style={styles.buttonText}>Add +</Text>
+               </View>
+            ):(
+              <View style={styles.ContainButton}>
+                <Text style={styles.circleButton}>-</Text>
+                <Text style={styles.buttonText}>{count == 0 ? 0 : count}</Text>
+                <Text style={styles.circleButton}> +</Text>
+              </View>
+              )}
+          </TouchableOpacity>
+        </View>
+      </View>
+    )
+  
+  };
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
@@ -24,49 +61,11 @@ export default function Menu() {
           />
         ))}
       </View>
-      <TouchableOpacity style={styles.orderButton}>
-        <Text style={styles.orderText}>Order Now</Text>
-      </TouchableOpacity>
     </ScrollView>
   );
 }
 
-const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
-  const [count, useCount] = useState(0);
-  console.log("🚀 ~ Card ~ count:", count)
-  return (
-    <View style={styles.card}>
-      <Image
-        style={styles.tinyLogo}
-        source={img}
-      />
-      <Text style={styles.cardTitle}>{name}</Text>
-      <View style={styles.menuItem}>
-        <Text style={styles.menuItemPrice}>{price}</Text>
-        <TouchableOpacity style={styles.button} onPress={() => {
-          useCount(count + 1)
-          onchangeDishCount(
-            { img, name, des, price, id, count: count + 1 }
-          )
-        }
-        }>
-          {count === 0 ?(
-               <View style={styles.ContainButton}>
-               <Text style={styles.buttonText}>Add +</Text>
-             </View>
-          ):(
-            <View style={styles.ContainButton}>
-              <Text style={styles.circleButton}>-</Text>
-              <Text style={styles.buttonText}>{count == 0 ? 0 : count}</Text>
-              <Text style={styles.circleButton}> +</Text>
-            </View>
-            )}
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
 
-};
 
 
 
@@ -74,8 +73,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5F5F5',
-    padding: 16,position:"relative",
-    height:"100%"
+    padding: 16
   },
   tinyLogo: {
     width: 122,
@@ -85,10 +83,12 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     width: "100%",
+    // height:"90%",
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 20,
     flexWrap: "wrap",
+    overflowX:true
   },
   header: {
     fontSize: 26,
@@ -116,31 +116,11 @@ const styles = StyleSheet.create({
     color: Colors.light.primary[800],
     marginBottom: 10,
   },
-  menuItemText: {
-    fontSize: 16,
-    color: '#333',
-  },
+
   menuItemPrice: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#444',
-  },
-  orderButton: {
-    backgroundColor: Colors.light.primary[800],
-    paddingVertical: 12,
-    alignItems: 'center',
-    borderRadius: 10,
-    margin: 0,
-    // marginTop: 20,
-    position:"absolute",
-    bottom: 0,
-    left: 20,
-    right: 20,
-  },
-  orderText: {
-    fontSize: 18,
-    color: '#FFF',
-    fontWeight: 'bold',
   },
   ContainButton: {
     width: 80,
