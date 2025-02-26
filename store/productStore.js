@@ -1,10 +1,14 @@
 import { create } from "zustand";
 
 const useProductStore = create((set) => ({
-  productData: {},  // The state can hold any data structure you need
-  allProductList: [{}, {}],  // Initialize with an example structure
+  selectedproductData: {}, 
+  productData: {}, 
+  allProductList: [{}, {}], 
+  updateSelectedProduct: (newProduct) => set((state) => ({
+    selectedproductData: newProduct,  
+  })),
   addProduct: (newProduct) => set((state) => ({
-    allProductList: [...state.allProductList, newProduct],  // Correctly add a product to the array
+    allProductList: [...state.allProductList, newProduct],  
   })),
   removeSingleProduct: (productId) =>
     set((state) => ({

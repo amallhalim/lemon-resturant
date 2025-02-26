@@ -3,39 +3,46 @@ import React, { useState } from 'react';
 import FoodItems from "../../StaticData/FoodItems"
 import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
+import { useProductStore } from '@/store';
 
 export default function Menu() {
   const [allOrderData, setOrderData] = useState([])
   // console.log(JSON.stringify(allOrderData, null, 2));
+  const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);
 
   const onchangeDishCount = (newCount) => {
     setOrderData((prev) => {
       return ( [ ...prev, { count: newCount }]) }
     )
   }
-  const Card = ({ img, name, des, price, id, onchangeDishCount }) => {
+  const Card = ({ dish, onchangeDishCount }) => {
     const [count, useCount] = useState(0);
     console.log("🚀 ~ Card ~ count:", count)
     return (
       <View style={styles.card}>
         <TouchableOpacity
-                  onPress= {()=>router.push(`/dishs/${id}`)}
+          onPress= {()=>{
+            router.push(`/dishs/${dish.id}`)
+            updateSelectedProduct(dish)
+          }
+          
+        }
 
         >
 
         <Image
           style={styles.tinyLogo}
-          source={img}
+          source={dish?.img}
           
           />
           </TouchableOpacity>
-        <Text style={styles.cardTitle}>{name}</Text>
+        <Text style={styles.cardTitle}>{dish.name}</Text>
         <View style={styles.menuItem}>
-          <Text style={styles.menuItemPrice}>{price}</Text>
+          <Text style={styles.menuItemPrice}>{dish.price}</Text>
           <TouchableOpacity style={styles.button} onPress={() => {
             useCount(count + 1)
             onchangeDishCount(
-              { img, name, des, price, id, count: count + 1 }
+              { ...dish, count: count + 1 }
             )
           }
           }>
@@ -62,9 +69,7 @@ export default function Menu() {
       <Text style={styles.header}>🍽️ Menu</Text>
       <View style={styles.row}>
         {FoodItems.map((dish, index) => (
-          <Card key={index} id={dish.id}
-            img={dish.img} name={dish.name}
-            des={dish.des} price={dish.price}
+          <Card key={index}  dish={dish}
             onchangeDishCount={onchangeDishCount}
           />
         ))}

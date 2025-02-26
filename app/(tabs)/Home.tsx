@@ -15,7 +15,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
-import { useProductStore, useUserStore } from "../../store";
+import { useProductStore, useUserStore,useCartStore } from "../../store";
 
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -26,11 +26,11 @@ export default function Home() {
   const setUser = useUserStore(state => state.setUser);
   const clearUser = useUserStore(state => state.clearUser);
   const user = useUserStore(state => state.user);
+  console.log("🚀 ~ Home ~ user:", user)
   const addProduct = useProductStore(state => state.addProduct);
   const allProductList = useProductStore(state => state.allProductList);
-  console.log("🚀 ~ Home ~ allProductList:", allProductList)
   const removeAllProduct = useProductStore(state => state.removeAllProduct);
-  console.log("🚀 ~ Home ~ allProductList:", allProductList)
+  const cartData =useCartStore(state=>state.cartData)
 
   const handleClearUser = () => {
     clearUser();
