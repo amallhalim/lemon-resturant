@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useRouter } from 'expo-router';
 
 import { HelloWave } from '@/components/HelloWave';
@@ -15,12 +15,36 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
+import { useProductStore, useUserStore } from "../../store";
 
 export default function Home() {
   const [count, setCount] = useState(0);
   const router = useRouter();
 
   const incrementCount = () => setCount(count + 1);
+
+  const setUser = useUserStore(state => state.setUser);
+  const clearUser = useUserStore(state => state.clearUser);
+  const user = useUserStore(state => state.user);
+  const addProduct = useProductStore(state => state.addProduct);
+  const allProductList = useProductStore(state => state.allProductList);
+  console.log("🚀 ~ Home ~ allProductList:", allProductList)
+  const removeAllProduct = useProductStore(state => state.removeAllProduct);
+  console.log("🚀 ~ Home ~ allProductList:", allProductList)
+
+  const handleClearUser = () => {
+    clearUser();
+  };
+  const handleClearProduct = () => {
+    removeAllProduct();
+  };
+
+  const handleSetUser = () => {
+    setUser({ id: 1, name: 'Jane Doe', email: 'jane@example.com' });
+  };
+  const handleAddProduct = () => {
+    addProduct({ id: 1, name: 'jaket', price: '1000' });
+  };
 
   return (
     <MainLayout>
@@ -48,6 +72,19 @@ export default function Home() {
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
             <Text style={styles.buttonText}>Go to WelcomeScreen</Text>
           </TouchableOpacity>
+
+
+    {/* Button to Set User */}
+    <Pressable onPress={handleAddProduct} style={styles.pressable}>
+            <Text style={styles.pressableText}>handleAddProduct</Text>
+          </Pressable>
+          {/* Button to Clear User */}
+          <Pressable onPress={handleClearProduct} style={styles.pressable}>
+            <Text style={styles.pressableText}>handleClearProduct  User</Text>
+          </Pressable>
+
+
+
           <Link href="/users/1"> go to user 1</Link>
           <Link href="/users/5"> go to user 5</Link>
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Reservation')}>
@@ -66,10 +103,15 @@ export default function Home() {
           <Link href="/b" style={styles.link}>Go to Page B</Link>
         </View>
 
-        {/* Interactive Section */}
+        {/* User Interaction Buttons */}
         <View style={styles.interactiveSection}>
-          <Pressable onPress={incrementCount} style={styles.pressable}>
-            <Text style={styles.pressableText}>Tap to Increase Count</Text>
+          {/* Button to Set User */}
+          <Pressable onPress={handleSetUser} style={styles.pressable}>
+            <Text style={styles.pressableText}>Set User to Jane Doe</Text>
+          </Pressable>
+          {/* Button to Clear User */}
+          <Pressable onPress={handleClearUser} style={styles.pressable}>
+            <Text style={styles.pressableText}>Clear User</Text>
           </Pressable>
           <View style={styles.countContainer}>
             <Text style={styles.countText}>Count: {count}</Text>
@@ -127,7 +169,7 @@ const styles = StyleSheet.create({
   link: {
     color: '#1E90FF',
     fontSize: 16,
-    marginVertical: 6,
+    marginVertical: 1,
   },
   interactiveSection: {
     alignItems: 'center',
