@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Button } f
 import React, { useState } from 'react';
 import FoodItems from "../../StaticData/FoodItems"
 import { Colors } from '@/constants/Colors';
+import { router } from 'expo-router';
 
 export default function Menu() {
   const [allOrderData, setOrderData] = useState([])
@@ -17,10 +18,17 @@ export default function Menu() {
     console.log("🚀 ~ Card ~ count:", count)
     return (
       <View style={styles.card}>
+        <TouchableOpacity
+                  onPress= {()=>router.push(`/dishs/${id}`)}
+
+        >
+
         <Image
           style={styles.tinyLogo}
           source={img}
-        />
+          
+          />
+          </TouchableOpacity>
         <Text style={styles.cardTitle}>{name}</Text>
         <View style={styles.menuItem}>
           <Text style={styles.menuItemPrice}>{price}</Text>

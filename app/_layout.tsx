@@ -49,6 +49,10 @@ const isAuthenticated = true
             name="users/[id]"
             options={{ headerShown: true, title: 'User Profile' }}
           />
+          <Stack.Screen
+            name="dishs/[id]"
+            options={{ headerShown: true, title:'dish details' }}
+          />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />
