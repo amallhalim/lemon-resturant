@@ -42,13 +42,15 @@ const isAuthenticated = true
         <Stack
           initialRouteName="index"
           screenOptions={{ headerShown: false }}
+          
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="Test" /> 
           <Stack.Screen
             name="users/[id]"
-            options={{ headerShown: true, title: 'User Profile' }}
+            options={{ headerShown: true, title: 'User Profile' ,}}
           />
+          
           <Stack.Screen
             name="dishs/[id]"
             options={{ headerShown: true, title:'dish details' }}

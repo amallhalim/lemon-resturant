@@ -16,11 +16,11 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: Colors.light.primary[800],
         tabBarInactiveTintColor: 'gray',
         headerShown:true,
         tabBarLabelStyle: { fontSize: 12, fontWeight: 'bold' },
-        tabBarIconStyle: { marginBottom: 5 },
+        tabBarIconStyle: { marginBottom: 1 },
         // headerShown: false,
         // headerStyle: { backgroundColor: Colors[colorScheme ?? 'light'].background },
         // headerTitleStyle: { fontWeight: 'bold', color: Colors[colorScheme ?? 'light'].text },

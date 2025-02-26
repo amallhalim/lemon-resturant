@@ -75,47 +75,47 @@ export default function Home() {
 
 
     {/* Button to Set User */}
-    <Pressable onPress={handleAddProduct} style={styles.pressable}>
+    {/* <Pressable onPress={handleAddProduct} style={styles.pressable}>
             <Text style={styles.pressableText}>handleAddProduct</Text>
-          </Pressable>
+          </Pressable> */}
           {/* Button to Clear User */}
-          <Pressable onPress={handleClearProduct} style={styles.pressable}>
+          {/* <Pressable onPress={handleClearProduct} style={styles.pressable}>
             <Text style={styles.pressableText}>handleClearProduct  User</Text>
-          </Pressable>
+          </Pressable> */}
 
 
 
-          <Link href="/users/1"> go to user 1</Link>
+          {/* <Link href="/users/1"> go to user 1</Link>
           <Link href="/users/5"> go to user 5</Link>
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Reservation')}>
             <Text style={styles.buttonText}>Go to Reservation</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/profile')}>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity style={styles.navButton} onPress={() => router.push('/profile')}>
             <Text style={styles.buttonText}>Profile</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Menu')}>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Menu')}>
             <Text style={styles.buttonText}>Menu</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Test')}>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Test')}>
             <Text style={styles.buttonText}>Test Page</Text>
-          </TouchableOpacity>
-          <Link href="/a" style={styles.link}>Go to Page A</Link>
-          <Link href="/b" style={styles.link}>Go to Page B</Link>
+          </TouchableOpacity> */}
+          {/* <Link href="/a" style={styles.link}>Go to Page A</Link> */}
+          {/* <Link href="/b" style={styles.link}>Go to Page B</Link> */}
         </View>
 
         {/* User Interaction Buttons */}
         <View style={styles.interactiveSection}>
           {/* Button to Set User */}
-          <Pressable onPress={handleSetUser} style={styles.pressable}>
+          {/* <Pressable onPress={handleSetUser} style={styles.pressable}>
             <Text style={styles.pressableText}>Set User to Jane Doe</Text>
-          </Pressable>
+          </Pressable> */}
           {/* Button to Clear User */}
-          <Pressable onPress={handleClearUser} style={styles.pressable}>
+          {/* <Pressable onPress={handleClearUser} style={styles.pressable}>
             <Text style={styles.pressableText}>Clear User</Text>
-          </Pressable>
-          <View style={styles.countContainer}>
+          </Pressable> */}
+          {/* <View style={styles.countContainer}>
             <Text style={styles.countText}>Count: {count}</Text>
-          </View>
+          </View> */}
         </View>
 
         {/* Hello Wave Component */}
