@@ -1,109 +1,92 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-
-export default function OnboardingScreen() {
-  const navigation = useNavigation();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const slides = [
-    {
-      title: "All your favorites",
-      description: "Get all your loved foods in one place, you just place the order, we do the rest",
-      image: require('../assets/images/welcom/Chef-bro.svg'),  // Replace with your image
-    },
-    {
-      title: "Order from chosen chef",
-      description: "Get all your loved foods from your chosen chef, we do the rest",
-      image: require('../assets/images/welcom/Chef-bro.svg'),  // Replace with your image
-    },
-    {
-      title: "Free delivery offers",
-      description: "Get amazing free delivery offers, we do the rest",
-      image: require('../assets/images/welcom/Chef-bro.svg'),  // Replace with your image
-    }
-  ];
-
-  const handleNext = () => {
-    if (currentIndex < slides.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      navigation.navigate('Login');  // After the last slide, navigate to the home screen or any other screen
-    }
-  };
+// app/AuthScreen.tsx (or rename to index.tsx if you want it as the root screen)
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Colors } from "../constants/Colors"
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import splashImg from "../assets/logo/Splash.png"
+export default function WelcomeScreen() {
+  const router = useRouter();
+  const image = {uri: 'https://legacy.reactjs.org/logo-og.png'};
 
   return (
-    <View style={styles.container}>
-      <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
-        {slides.map((slide, index) => (
-          <View key={index} style={styles.slide}>
-            <Image source={slide.image} style={styles.image} />
-            <Text style={styles.title}>{slide.title}</Text>
-            <Text style={styles.description}>{slide.description}</Text>
-            {index === slides.length - 1 ? (
-              <TouchableOpacity style={styles.button} onPress={handleNext}>
-                <Text style={styles.buttonText}>Get Started</Text>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity style={styles.button} onPress={handleNext}>
-                <Text style={styles.buttonText}>Next</Text>
-              </TouchableOpacity>
-            )}
-          </View>
-        ))}
-      </ScrollView>
-      <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.skipText}>Skip</Text>
+
+    <SafeAreaProvider>
+    <SafeAreaView style={styles.container} edges={['left', 'right']}>
+      <ImageBackground source={splashImg} resizeMode="cover" style={styles.image}>
+        <Text style={styles.text}>Inside</Text>
+        <View style={styles.container}>
+      <FontAwesome5 name="lemon" size={24} color="black" />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push('/Home')}
+      >
+        <Text style={styles.buttonText}>Home</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push('/OnboardingScreen')}
+      >
+        <Text style={styles.buttonText}>OnboardingScreen</Text>
+      </TouchableOpacity>
+      <Text style={styles.title}>Welcome!</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push('/Login')}
+      >
+        <Text style={styles.buttonText}>Log In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push('/SignUp')}
+      >
+        <Text style={styles.buttonText}>Sign Up</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => router.push('/home')} // or whatever route for guest access
+      >
+        <Text style={styles.buttonText}>Continue as Guest</Text>
       </TouchableOpacity>
     </View>
+      </ImageBackground>
+    </SafeAreaView>
+
+  </SafeAreaProvider>
+
+  
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-  },
-  slide: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 300,  // Adjust width based on your layout
-    padding: 20,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // padding: 20,
+    // backgroundColor: Colors.light.green[800],
   },
   image: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
+    flex: 1,
+    justifyContent: 'center',
   },
+
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  description: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginBottom: 30,
-    paddingHorizontal: 20,
+    marginBottom: 40,
   },
   button: {
-    backgroundColor: '#FFA500', // Example color for the button
+    width: '80%',
+    backgroundColor: '#007BFF',
     paddingVertical: 15,
-    paddingHorizontal: 40,
-    borderRadius: 10,
+    borderRadius: 8,
     marginBottom: 20,
+    alignItems: 'center',
   },
   buttonText: {
-    color: '#fff',
+    color: '#FFF',
     fontSize: 18,
-  },
-  skipButton: {
-    position: 'absolute',
-    top: 40,
-    right: 20,
-  },
-  skipText: {
-    fontSize: 16,
-    color: '#888',
   },
 });

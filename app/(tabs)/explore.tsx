@@ -34,15 +34,7 @@ export default function TabTwoScreen() {
         <MenuFlatList />
       </View>
 
-      {/* Colorful Flexbox Layout */}
-      <View style={styles.colorBlocks}>
-        <View style={[styles.block, { backgroundColor: 'green', flex: 2 }]} />
-        <View style={[styles.block, { backgroundColor: 'red', flex: 1 }]} />
-        <View style={[styles.block, { backgroundColor: 'darkorange', flex: 1 }]} />
-      </View>
-
-      {/* Footer Text */}
-      <Text style={styles.footerText}>Enjoy your meal! 🍽️</Text>
+   
     </MainLayout>
   );
 }

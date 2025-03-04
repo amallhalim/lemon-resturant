@@ -42,7 +42,7 @@ const isAuthenticated = true
         <Stack
           initialRouteName="index"
           screenOptions={{ headerShown: false }}
-          
+
         >
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="Test" /> 

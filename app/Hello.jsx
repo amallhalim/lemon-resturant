@@ -26,18 +26,6 @@ export default function Hello() {
        >
          <Text style={styles.buttonText}>Log In</Text>
        </TouchableOpacity>
-       <TouchableOpacity
-         style={styles.button}
-         onPress={() => router.push('/SignUp')}
-       >
-         <Text style={styles.buttonText}>Sign Up</Text>
-       </TouchableOpacity>
-       <TouchableOpacity
-         style={styles.button}
-         onPress={() => router.push('/home')} // or whatever route for guest access
-       >
-         <Text style={styles.buttonText}>Continue as Guest</Text>
-       </TouchableOpacity>
      </View>
     </View>
   )
