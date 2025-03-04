@@ -21,9 +21,9 @@ export const Colors = {
       white: "#FFFFFF",
     },
     background: {
-      primary: "#fff",
+      primary: "#ffffff",
       secondary: "#F0F5FA",
-      // gray: "#32343E",
+      lightgGray: "#f0f5fa",
     },
     primary: {
       800: '#FF7622',
@@ -47,8 +47,13 @@ export const Colors = {
       500: '#E13B27',
       600: '#B42F1F',
       700: '#872317',
-      800: '#121223',
       900: '#2D0C08',
+    },
+    black: {
+      800: '#121223',
+    },
+    gray: {
+      500: '#41414f',
     },
     green: {
       800: '#008C8C',
