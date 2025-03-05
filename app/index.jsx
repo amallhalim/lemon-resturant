@@ -33,6 +33,7 @@ export default function OnboardingScreen() {
 
   return (
     <View style={styles.container}>
+      <welcomSlider/>
       <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
         {slides.map((slide, index) => (
           <View key={index} style={styles.slide}>
