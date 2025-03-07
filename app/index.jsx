@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import WelcomSlider from '../components/WelcomSlider/WelcomSlider';
 
 export default function OnboardingScreen() {
   const navigation = useNavigation();
@@ -33,8 +34,8 @@ export default function OnboardingScreen() {
 
   return (
     <View style={styles.container}>
-      <welcomSlider/>
-      <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
+      <WelcomSlider/>
+      {/* <ScrollView horizontal pagingEnabled showsHorizontalScrollIndicator={false}>
         {slides.map((slide, index) => (
           <View key={index} style={styles.slide}>
             <Image source={slide.image} style={styles.image} />
@@ -54,7 +55,7 @@ export default function OnboardingScreen() {
       </ScrollView>
       <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.skipText}>Skip</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }
