@@ -66,10 +66,6 @@ export default function WelcomeSlider() {
         onSlideChange={(index) => {
           setCurrentSlide(index);
         }}
-        onDone={() => {
-          Alert.alert("Welcome!", "You have completed the tutorial.");
-          navigation.navigate('Home');
-        }}
         dotStyle={styles.dot}
         activeDotStyle={styles.activeDot}
         autoplay
@@ -93,13 +89,12 @@ export default function WelcomeSlider() {
         }
         {reachToEnd && <TouchableOpacity
           style={styles.manualButton}
-          onPress={() => navigation.navigate('index')}
+          onPress={() => navigation.navigate('(tabs)')}
         >
           <Text style={styles.buttonText}>GET STARTED</Text>
         </TouchableOpacity>}
-
         {!reachToEnd && <TouchableOpacity
-          onPress={() => navigation.navigate('index')}
+          onPress={() => navigation.navigate('Hello')}
           style={[styles.skipButton]}
         >
           <Text style={styles.skipText}>skip</Text>
