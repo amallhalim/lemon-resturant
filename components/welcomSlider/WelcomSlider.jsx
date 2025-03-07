@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+import { useRouter } from 'expo-router';
 import React, { useRef, useState, useEffect } from 'react';
 import {
   StyleSheet,
@@ -40,7 +41,7 @@ const slides = [
 export default function WelcomeSlider() {
   const sliderRef = useRef(null);
   const navigation = useNavigation();
-
+const router = useRouter()
   const [currentSlide, setCurrentSlide] = useState(0);
   const [reachToEnd, setReachToEnd] = useState(0);
 
@@ -89,7 +90,7 @@ export default function WelcomeSlider() {
         }
         {reachToEnd && <TouchableOpacity
           style={styles.manualButton}
-          onPress={() => navigation.navigate('(tabs)')}
+          onPress={() => router.push('/Menu')}  
         >
           <Text style={styles.buttonText}>GET STARTED</Text>
         </TouchableOpacity>}
