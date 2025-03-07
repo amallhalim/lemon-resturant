@@ -16,28 +16,24 @@ const slides = [
     title: 'Order from Top Chefs',
     text: 'Discover and order delicious meals from your favorite chefs with just a few taps.',
     image: require('../../assets/vector/Chef-bro.png'),
-    // backgroundColor: '#FFD700', // Gold
   },
   {
     key: '2',
     title: 'Fast & Secure Delivery',
     text: 'We ensure that your food reaches you fresh, hot, and on time!',
     image: require('../../assets/vector/Take Away-pana.png'),
-    // backgroundColor: '#FF6347', // Tomato
   },
   {
     key: '3',
     title: 'Track Your Order',
     text: 'Easily track your order in real-time and stay updated on its status.',
     image: require('../../assets/vector/Orderfood.png'),
-    // backgroundColor: '#4682B4', // Steel Blue
   },
   {
     key: '4',
     title: 'Enjoy Your Meal',
     text: 'Sit back, relax, and enjoy your freshly prepared meal at home!',
     image: require('../../assets/vector/EatingFood.png'),
-    // backgroundColor: '#32CD32', // Lime Green
   }
 ];
 
@@ -124,8 +120,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 350,
+    height: 350,
     resizeMode: 'contain',
     marginBottom: 20,
   },
@@ -156,12 +152,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     borderRadius: 20,
   },
-  doneButton: {
-    backgroundColor: '#32CD32',
-    paddingVertical: 12,
-    paddingHorizontal: 25,
-    borderRadius: 20,
-  },
   manualButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -177,7 +167,6 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: "center"
   },
-
   buttonText: {
     fontSize: 14,
     fontWeight: 'bold',
