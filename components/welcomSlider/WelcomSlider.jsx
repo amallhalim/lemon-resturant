@@ -93,12 +93,13 @@ export default function WelcomeSlider() {
         }
         {reachToEnd && <TouchableOpacity
           style={styles.manualButton}
-          onPress={() => router.push('/Menu')}
+          onPress={() => router.push('/Login')}
+
         >
           <Text style={styles.buttonText}>GET STARTED</Text>
         </TouchableOpacity>}
         {!reachToEnd && <TouchableOpacity
-          onPress={() => navigation.navigate('Hello')}
+          onPress={() => navigation.navigate('/Login')}
           style={[styles.skipButton]}
         >
           <Text style={styles.skipText}>skip</Text>

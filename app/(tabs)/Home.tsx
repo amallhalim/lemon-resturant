@@ -66,7 +66,12 @@ export default function Home() {
             Explore and navigate through the app
           </ThemedText>
         </ThemedView>
-
+        <TouchableOpacity
+        style={styles.navButton}
+        onPress={() => router.push('/Login')}
+      >
+        <Text style={styles.buttonText}>Log In00000000000000</Text>
+      </TouchableOpacity>
         {/* Navigation Buttons */}
         <View style={styles.navigationContainer}>
           <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
