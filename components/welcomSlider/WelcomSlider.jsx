@@ -7,9 +7,9 @@ import {
   View,
   Image,
   TouchableOpacity,
-  Alert
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
+import { Colors } from '../../constants/Colors';
 
 const slides = [
   {
@@ -41,7 +41,8 @@ const slides = [
 export default function WelcomeSlider() {
   const sliderRef = useRef(null);
   const navigation = useNavigation();
-const router = useRouter()
+  const router = useRouter()
+  
   const [currentSlide, setCurrentSlide] = useState(0);
   const [reachToEnd, setReachToEnd] = useState(0);
 
@@ -50,10 +51,10 @@ const router = useRouter()
   }, [currentSlide])
 
   const renderItem = ({ item }) => (
-    <View style={[styles.slide, { backgroundColor: item.backgroundColor }]}>
+    <View style={[styles.slide]}>
+      <Image source={item.image} style={styles.image} />
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.text}>{item.text}</Text>
-      <Image source={item.image} style={styles.image} />
     </View>
   );
 
@@ -76,6 +77,8 @@ const router = useRouter()
         allowTouchEvents
         hidePagination={false}
         goToSlide={currentSlide}
+        showNextButton={false}
+        showDoneButton={false}
       />
 
       <View style={styles.manualButtonsContainer}>
@@ -90,7 +93,7 @@ const router = useRouter()
         }
         {reachToEnd && <TouchableOpacity
           style={styles.manualButton}
-          onPress={() => router.push('/Menu')}  
+          onPress={() => router.push('/Menu')}
         >
           <Text style={styles.buttonText}>GET STARTED</Text>
         </TouchableOpacity>}
@@ -122,16 +125,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    color: '#FFF',
+    color: Colors.light.font.secondary,
     marginBottom: 10,
   },
   text: {
     fontSize: 16,
     textAlign: 'center',
-    color: '#FFF',
+    color: Colors.light.font.lightGray,
     paddingHorizontal: 10,
   },
   skipButton: {
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   nextButton: {
-    backgroundColor: '#FF7F3F',
+    backgroundColor: Colors.light.primary[800],
     paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 20,
@@ -157,7 +160,8 @@ const styles = StyleSheet.create({
     margin: 30
   },
   manualButton: {
-    backgroundColor: '#FF7F3F', paddingVertical: 12,
+    backgroundColor: Colors.light.primary[800],
+    paddingVertical: 12,
     paddingHorizontal: 25,
     borderRadius: 10,
     margin: 10,
@@ -169,14 +173,14 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   dot: {
-    backgroundColor: '#ddd',
-    width: 8,
-    height: 8,
+    backgroundColor: Colors.light.primary[200],
+    width: 10,
+    height: 10,
     marginHorizontal: 5,
     borderRadius: 4,
   },
   activeDot: {
-    backgroundColor: '#FF7F3F',
+    backgroundColor: Colors.light.primary[800],
     width: 12,
     height: 12,
     borderRadius: 6,

@@ -17,7 +17,8 @@ export const Colors = {
       secondary: "#32343E",
       primary: "#ED7A63",
       gray: "#32343E",
-      lightGray: "#A0A5BA",
+      // lightGray: "#A0A5BA",
+      lightGray: "#646982",
       white: "#FFFFFF",
     },
     background: {
@@ -27,6 +28,7 @@ export const Colors = {
     },
     primary: {
       800: '#FF7622',
+      200: '#FFE1CE',
     },
     red: {
       100: '#F9D8D4',
