@@ -4,39 +4,38 @@ const categories = [
   {
     id: "1",
     name: "Starters",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/hot-dog.png'),
   },
   {
     id: "2",
     name: "Main Courses",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/breakfast.png'),
   },
   {
     id: "3",
     name: "Desserts",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/spaghetti.png'),
   },
   {
     id: "4",
     name: "Beverages",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/sandwich.png'),
   },
   {
     id: "5",
     name: "Salads",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/salmon.png'),
   },
   {
     id: "6",
     name: "Sides",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/thanksgiving.gif'),
   },
   {
     id: "7",
     name: "Drinks",
-    img: require('../assets/dishs/burgger/burger2.jpg'),
+    image: require('../assets/category/pizza.png'),
   }
 ];
 
-// Export the categories so that it can be imported elsewhere
 export default categories;

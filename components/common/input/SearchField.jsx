@@ -11,7 +11,7 @@ export default function SearchField({ text, onChangeText }) {
 
     return (
         <View style={styles.searchContainer}>
-            <Fontisto name="search" size={24} color="black" style={styles.serachIcon}
+            <Fontisto name="search" size={15}lor="black" style={styles.serachIcon}
             />
             <TextInput
                 style={styles.serachInput}
