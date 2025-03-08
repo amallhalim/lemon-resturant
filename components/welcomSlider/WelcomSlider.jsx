@@ -53,8 +53,8 @@ export default function WelcomeSlider() {
   const renderItem = ({ item }) => (
     <View style={[styles.slide]}>
       <Image source={item.image} style={styles.image} />
-      <Text style={styles.title}>{item.title}</Text>
-      <Text style={styles.text}>{item.text}</Text>
+      <Text style={styles.title}>{item?.title}</Text>
+      <Text style={styles.text}>{item?.text}</Text>
     </View>
   );
 
@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
   image: {
     width: 350,
     height: 350,
-    resizeMode: 'contain',
     marginBottom: 20,
   },
   title: {

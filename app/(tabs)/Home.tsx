@@ -6,16 +6,17 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  ImageBackground,
 } from 'react-native';
 import { useEffect, useState } from 'react';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
-import { useProductStore, useUserStore,useCartStore } from "../../store";
+import { useProductStore, useUserStore, useCartStore } from "../../store";
 
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -26,11 +27,10 @@ export default function Home() {
   const setUser = useUserStore(state => state.setUser);
   const clearUser = useUserStore(state => state.clearUser);
   const user = useUserStore(state => state.user);
-  console.log("🚀 ~ Home ~ user:", user)
   const addProduct = useProductStore(state => state.addProduct);
   const allProductList = useProductStore(state => state.allProductList);
   const removeAllProduct = useProductStore(state => state.removeAllProduct);
-  const cartData =useCartStore(state=>state.cartData)
+  const cartData = useCartStore(state => state.cartData);
 
   const handleClearUser = () => {
     clearUser();
@@ -43,7 +43,7 @@ export default function Home() {
     setUser({ id: 1, name: 'Jane Doe', email: 'jane@example.com' });
   };
   const handleAddProduct = () => {
-    addProduct({ id: 1, name: 'jaket', price: '1000' });
+    addProduct({ id: 1, name: 'Jacket', price: '1000' });
   };
 
   return (
@@ -58,6 +58,69 @@ export default function Home() {
         }
       >
         {/* Welcome Section */}
+        <View>
+          <ImageBackground
+            source={require("../../assets/category/thanksgiving.gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/sweet.gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/spaghetti.png")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/chicken.png")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/drink.png")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/salmon.png")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/meat.gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/meat.gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/meat.gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/pizza.png")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/pizza.gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+          <ImageBackground
+            source={require("../../assets/category/burger (1).gif")}
+            // resizeMode="cover"
+            style={styles.image}
+          />
+        </View>
+
         <ThemedView style={styles.titleContainer}>
           <ThemedText type="title" style={styles.titleText}>
             Welcome 🎉
@@ -66,61 +129,54 @@ export default function Home() {
             Explore and navigate through the app
           </ThemedText>
         </ThemedView>
+
+        {/* Log In Button */}
         <TouchableOpacity
-        style={styles.navButton}
-        onPress={() => router.push('/Login')}
-      >
-        <Text style={styles.buttonText}>Log In00000000000000</Text>
-      </TouchableOpacity>
+          style={styles.navButton}
+          onPress={() => router.push('/Login')}
+        >
+          <Text style={styles.buttonText}>Log In</Text>
+        </TouchableOpacity>
+
         {/* Navigation Buttons */}
         <View style={styles.navigationContainer}>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/')}>
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => router.push('/')}
+          >
             <Text style={styles.buttonText}>Go to WelcomeScreen</Text>
           </TouchableOpacity>
 
-
-    {/* Button to Set User */}
-    {/* <Pressable onPress={handleAddProduct} style={styles.pressable}>
-            <Text style={styles.pressableText}>handleAddProduct</Text>
-          </Pressable> */}
-          {/* Button to Clear User */}
-          {/* <Pressable onPress={handleClearProduct} style={styles.pressable}>
-            <Text style={styles.pressableText}>handleClearProduct  User</Text>
-          </Pressable> */}
-
-
-
-          {/* <Link href="/users/1"> go to user 1</Link>
-          <Link href="/users/5"> go to user 5</Link>
-          <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Reservation')}>
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => router.push('/Reservation')}
+          >
             <Text style={styles.buttonText}>Go to Reservation</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity style={styles.navButton} onPress={() => router.push('/profile')}>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.navButton}
+            onPress={() => router.push('/profile')}
+          >
             <Text style={styles.buttonText}>Profile</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Menu')}>
-            <Text style={styles.buttonText}>Menu</Text>
-          </TouchableOpacity> */}
-          {/* <TouchableOpacity style={styles.navButton} onPress={() => router.push('/Test')}>
-            <Text style={styles.buttonText}>Test Page</Text>
-          </TouchableOpacity> */}
-          {/* <Link href="/a" style={styles.link}>Go to Page A</Link> */}
-          {/* <Link href="/b" style={styles.link}>Go to Page B</Link> */}
+          </TouchableOpacity>
         </View>
 
         {/* User Interaction Buttons */}
         <View style={styles.interactiveSection}>
-          {/* Button to Set User */}
-          {/* <Pressable onPress={handleSetUser} style={styles.pressable}>
+          <Pressable onPress={handleSetUser} style={styles.pressable}>
             <Text style={styles.pressableText}>Set User to Jane Doe</Text>
-          </Pressable> */}
-          {/* Button to Clear User */}
-          {/* <Pressable onPress={handleClearUser} style={styles.pressable}>
+          </Pressable>
+          <Pressable onPress={handleClearUser} style={styles.pressable}>
             <Text style={styles.pressableText}>Clear User</Text>
-          </Pressable> */}
-          {/* <View style={styles.countContainer}>
-            <Text style={styles.countText}>Count: {count}</Text>
-          </View> */}
+          </Pressable>
+        </View>
+
+        {/* Cart Info */}
+        <View style={styles.cartInfoContainer}>
+          <Text style={styles.cartInfoText}>
+            Cart Items: {cartData.length}
+          </Text>
         </View>
 
         {/* Hello Wave Component */}
@@ -148,10 +204,16 @@ const styles = StyleSheet.create({
     color: '#666',
     marginTop: 5,
   },
+  image: {
+    flex: 1,
+    width: "100%",
+    height: 200,
+    borderRadius: 30,
+    overflow: 'hidden',
+  },
   reactLogo: {
     height: 150,
     width: 150,
-    resizeMode: 'contain',
   },
   navigationContainer: {
     marginVertical: 20,
@@ -171,11 +233,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  link: {
-    color: '#1E90FF',
-    fontSize: 16,
-    marginVertical: 1,
-  },
   interactiveSection: {
     alignItems: 'center',
     marginVertical: 20,
@@ -192,14 +249,14 @@ const styles = StyleSheet.create({
     color: '#333',
     fontWeight: '500',
   },
-  countContainer: {
-    marginTop: 10,
+  cartInfoContainer: {
+    marginTop: 20,
     backgroundColor: '#FFF0F6',
     padding: 12,
     borderRadius: 8,
     elevation: 2,
   },
-  countText: {
+  cartInfoText: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#D32F2F',
