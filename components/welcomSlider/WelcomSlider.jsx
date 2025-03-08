@@ -99,7 +99,7 @@ export default function WelcomeSlider() {
           <Text style={styles.buttonText}>GET STARTED</Text>
         </TouchableOpacity>}
         {!reachToEnd && <TouchableOpacity
-          onPress={() => navigation.navigate('/Login')}
+                  onPress={() => router.push('/Login')}
           style={[styles.skipButton]}
         >
           <Text style={styles.skipText}>skip</Text>

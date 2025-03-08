@@ -25,6 +25,7 @@ export const Colors = {
       primary: "#ffffff",
       secondary: "#F0F5FA",
       lightgGray: "#f0f5fa",
+      gray: "#F6F6F6",
     },
     primary: {
       800: '#FF7622',
