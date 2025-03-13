@@ -14,18 +14,6 @@ import AppIntroSlider from 'react-native-app-intro-slider';
 
 const slides = [
   {
-    key: '1',
-    title: 'Order from Top Chefs',
-    text: 'Discover and order delicious meals from your favorite chefs with just a few taps.',
-    image: require('../../assets/images/HomeSlider/chef.jpg'),
-    promoCard: {
-      promoTitle: 'FREE Delivery',
-      promoSubtitle: 'On all orders above $20',
-      promoDescription: 'Enjoy fast shipping on your next order!',
-      promoCode: 'FREESHIP20',
-    },
-  },
-  {
     key: '2',
     title: 'Fast & Secure Delivery',
     text: 'Your food arrives fresh, hot, and on time—every time!',
@@ -35,6 +23,30 @@ const slides = [
       promoSubtitle: 'Buy 1, Get 1 Free on selected items',
       promoDescription: 'Don’t miss out on this limited-time deal!',
       promoCode: 'BOGOFEAST',
+    },
+  },
+  {
+    key: '1',
+    title: 'Order from Top Chefs',
+    text: 'Discover and order delicious meals from your favorite chefs with just a few taps.',
+    image: require('../../assets/images/HomeSlider/meal.jpg'),
+    promoCard: {
+      promoTitle: 'FREE Delivery',
+      promoSubtitle: 'On all orders above $20',
+      promoDescription: 'Enjoy fast shipping on your next order!',
+      promoCode: 'FREESHIP20',
+    },
+  },
+  {
+    key: '4',
+    title: 'Enjoy Your Meal',
+    text: 'Kick back, relax, and savor your freshly made meal in the comfort of your home!',
+    image: require('../../assets/images/HomeSlider/sweet2.jpg'),
+    promoCard: {
+      promoTitle: 'FREE Dessert',
+      promoSubtitle: 'With any main course',
+      promoDescription: 'Sweeten your meal with this offer!',
+      promoCode: 'SWEETDEAL',
     },
   },
   {
@@ -49,23 +61,12 @@ const slides = [
       promoCode: 'WELCOME20',
     },
   },
-  {
-    key: '4',
-    title: 'Enjoy Your Meal',
-    text: 'Kick back, relax, and savor your freshly made meal in the comfort of your home!',
-    image: require('../../assets/images/HomeSlider/enjoyYourMeal.jpg'),
-    promoCard: {
-      promoTitle: 'FREE Dessert',
-      promoSubtitle: 'With any main course',
-      promoDescription: 'Sweeten your meal with this offer!',
-      promoCode: 'SWEETDEAL',
-    },
-  },
+
   {
     key: '5',
     title: 'Indulge in Every Bite',
     text: 'Experience mouthwatering flavors, crafted with care by top chefs.',
-    image: require('../../assets/images/HomeSlider/enjoyYourMeal.jpg'),
+    image: require('../../assets/images/HomeSlider/boyEatPasta.jpg'),
     promoCard: {
       promoTitle: '50% OFF',
       promoSubtitle: 'On Salad & Pasta',
