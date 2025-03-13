@@ -37,7 +37,9 @@ export default function TabLayout() {
         name="Home"
         options={{
           title: 'Home',
-          headerTitle: 'Welcome Home', // Custom header title
+          // headerTitle: '', // Custom header titlecan 
+          headerShown:false,
+          headerTitle: () => null, // Use null or a custom component
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
