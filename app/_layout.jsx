@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
 import 'react-native-reanimated';
@@ -7,12 +7,14 @@ import 'react-native-reanimated';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import AppLayout from '../components/layouts/AppLayout';
 import LoadingStartPage from "../components/common/loading/LoadingStartPage";
-import { Text } from 'react-native';
+import { useUserStore } from '@/store';
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [isLoading, setIsLoading] = useState(true);
-const isAuthenticated = true 
+  const user = useUserStore(state=>state.user)
+  console.log("🚀 ~ RootLayout ~ user:", user)
+
   // Simulate data fetching or authentication check
   useEffect(() => {
     const loadData = async () => {
@@ -31,11 +33,14 @@ const isAuthenticated = true
     </AppLayout>; // Or use a loading spinner here
   }
 
-  // If not authenticated, redirect to login page or an unauthorized route
-  if (!isAuthenticated) {
-    return <AppLayout><Text>You are not authorized. Please log in.</Text></AppLayout>;
-  }
-
+//   // // If not authenticated, redirect to login page or an unauthorized route
+//   // if (!user) {
+//   //   return <AppLayout><Text>You are not authorized. Please log in.</Text></AppLayout>;
+//   // }
+// // If not authenticated, redirect to login
+// if (!user) {
+//   return <Redirect href="/(public)/login" />;
+// }
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <AppLayout> 
@@ -44,17 +49,8 @@ const isAuthenticated = true
           screenOptions={{ headerShown: false }}
 
         >
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="Test" /> 
-          <Stack.Screen
-            name="users/[id]"
-            options={{ headerShown: true, title: 'User Profile' ,}}
-          />
-          
-          <Stack.Screen
-            name="dishs/[id]"
-            options={{ headerShown: true, title:'dish details' }}
-          />
+          <Stack.Screen name="(public)" />
+          <Stack.Screen name="(private)" />
           <Stack.Screen name="+not-found" />
         </Stack>
         <StatusBar style="auto" />

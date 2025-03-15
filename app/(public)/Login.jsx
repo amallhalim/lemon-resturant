@@ -1,12 +1,13 @@
 import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View, Button } from 'react-native';
 import React from 'react';
-import { Colors } from '../constants/Colors';
+import { Colors } from '../../constants/Colors';
 import { useRouter } from 'expo-router';
-import BackGroundFood3 from "../assets/background/loginBG.jpg"
+// import BackGroundFood3 from "../assets/background/loginBG.jpg"
+import BackGroundFood3 from "../../assets/background/loginBG.jpg"
 import { Controller, useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import ErrorText from '../components/common/text/ErrorText';
+import ErrorText from '../../components/common/text/ErrorText';
 
 const validationSchema = object({
   password: string().trim().required("Password is required."),

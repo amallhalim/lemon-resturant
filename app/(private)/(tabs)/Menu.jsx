@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Button } from 'react-native';
 import React, { useState } from 'react';
-import FoodItems from "../../StaticData/FoodItems"
+import FoodItems from "../../../StaticData/FoodItems"
 import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 import { useProductStore } from '@/store';

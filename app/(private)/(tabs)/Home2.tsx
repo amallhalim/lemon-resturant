@@ -16,7 +16,7 @@ import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import MainLayout from '@/components/layouts/MainLayout';
-import { useProductStore, useUserStore, useCartStore } from "../../store";
+import { useProductStore, useUserStore, useCartStore } from "../../../store";
 
 export default function Home() {
   const [count, setCount] = useState(0);
@@ -60,62 +60,62 @@ export default function Home() {
         {/* Welcome Section */}
         <View>
           <ImageBackground
-            source={require("../../assets/category/thanksgiving.gif")}
+            source={require("../../../assets/category/thanksgiving.gif")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/sweet.gif")}
+            source={require("../../../assets/category/sweet.gif")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/spaghetti.png")}
+            source={require("../../../assets/category/spaghetti.png")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/chicken.png")}
+            source={require("../../../assets/category/chicken.png")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/drink.png")}
+            source={require("../../../assets/category/drink.png")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/salmon.png")}
+            source={require("../../../assets/category/salmon.png")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/meat.gif")}
+            source={require("../../../assets/category/meat.gif")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/meat.gif")}
+            source={require("../../../assets/category/meat.gif")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/meat.gif")}
+            source={require("../../../assets/category/meat.gif")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/pizza.png")}
+            source={require("../../../assets/category/pizza.png")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/pizza.gif")}
+            source={require("../../../assets/category/pizza.gif")}
             // resizeMode="cover"
             style={styles.image}
           />
           <ImageBackground
-            source={require("../../assets/category/burger (1).gif")}
+            source={require("../../../assets/category/burger (1).gif")}
             // resizeMode="cover"
             style={styles.image}
           />

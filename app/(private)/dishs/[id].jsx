@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
-import { useProductStore } from "../../store"
+import { useProductStore } from "../../../store"
 import { Entypo } from '@expo/vector-icons';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { Colors } from '../../constants/Colors';
-import SizeOption from '../../pages/dish/SizeOption';
+import { Colors } from '../../../constants/Colors';
+import SizeOption from '../../../pages/dish/SizeOption';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 export default function DishDetails() {
 

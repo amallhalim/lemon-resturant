@@ -8,12 +8,12 @@ import {
 import { useEffect, useState } from 'react';
 
 import { Colors } from '@/constants/Colors';
-import SearchField from "../../components/common/input/SearchField"
-import CategorySmallLabal from "../../pages/home/CategorySmallLabal"
-import categoryData from "../../StaticData/categoryData"
-import HomeSlider from "../../pages/home/HomeSlider"
-import DishCard from "../../pages/home/DishCard"
-import TrendDishData from "../../StaticData/TrendDishData"
+import SearchField from "../../../components/common/input/SearchField"
+import CategorySmallLabal from "../../../pages/home/CategorySmallLabal"
+import categoryData from "../../../StaticData/categoryData"
+import HomeSlider from "../../../pages/home/HomeSlider"
+import DishCard from "../../../pages/home/DishCard"
+import TrendDishData from "../../../StaticData/TrendDishData"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 export default function Home() {
   const [text, onChangeText] = useState('Useless Text');
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <View style={styles.container} >
       <View style={{ flexDirection: "row", justifyContent: "space-between", padding: 10 }}>
-        <Image source={require('../../assets/images/avator/manAvator.jpg')} style={{
+        <Image source={require('../../../assets/images/avator/manAvator.jpg')} style={{
           width: 50, height: 50, borderRadius: 50
         }} />
         <Text>Hey Halal, Good Afternoon!</Text>

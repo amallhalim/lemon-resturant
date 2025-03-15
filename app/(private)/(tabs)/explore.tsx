@@ -4,7 +4,7 @@ import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 import { IconSymbol } from '@/components/ui/IconSymbol';
 import MainLayout from '@/components/layouts/MainLayout';
-import MenuFlatList from "../../pages/menu/MenuFlatList";
+import MenuFlatList from "../../../pages/menu/MenuFlatList";
 
 export default function TabTwoScreen() {
   return (

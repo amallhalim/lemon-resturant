@@ -68,7 +68,7 @@ const moveDirectories = async () => {
     console.log("📄 app/index.tsx created.");
 
     // Create _layout.tsx
-    const layoutPath = path.join(newAppDirPath, "_layout.tsx");
+    const layoutPath = path.join(newAppDirPath, "_layout.jsx");
     await fs.promises.writeFile(layoutPath, layoutContent);
     console.log("📄 app/_layout.tsx created.");
 
