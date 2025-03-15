@@ -56,12 +56,16 @@ const styles = StyleSheet.create({
       alignItems: "center",
       width: 150,
       height: 200,
-      // margin: "3%",
-      // flex: 1,
-      // marginBottom: 20,
       backgroundColor: '#FFF',
-      // padding: 2,
       borderRadius: 30,
+      padding: 20,
+      borderRadius: 15,
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOffset: { width: 3, height: 3 },
+      shadowRadius: 10,
+      shadowOpacity: 0.8,
+      elevation: 5, 
     },
     cardTitle: {
       fontSize: 15,
@@ -69,7 +73,6 @@ const styles = StyleSheet.create({
       color: Colors.light.primary[800],
       marginBottom: 10,
     },
-  
     menuItemPrice: {
       fontSize: 16,
       fontWeight: 'bold',
@@ -112,7 +115,6 @@ const styles = StyleSheet.create({
       flex:1,padding:2,
       color: Colors.light.white,
       textAlign: "center", 
-  
     },
     tinyLogo: {
       width: 122,

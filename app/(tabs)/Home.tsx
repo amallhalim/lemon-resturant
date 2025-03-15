@@ -3,6 +3,7 @@ import {
   View,
   Text,
   ScrollView,
+  Image,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 
@@ -13,6 +14,7 @@ import categoryData from "../../StaticData/categoryData"
 import HomeSlider from "../../pages/home/HomeSlider"
 import DishCard from "../../pages/home/DishCard"
 import TrendDishData from "../../StaticData/TrendDishData"
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 export default function Home() {
   const [text, onChangeText] = useState('Useless Text');
 
@@ -20,26 +22,30 @@ export default function Home() {
 
   return (
     <View style={styles.container} >
-      <Text>Hey Halal, Good Afternoon!</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between", padding: 10 }}>
+        <Image source={require('../../assets/images/avator/manAvator.jpg')} style={{
+          width: 50, height: 50, borderRadius: 50
+        }} />
+        <Text>Hey Halal, Good Afternoon!</Text>
+        <FontAwesome5 name="list-ul" size={24} color="black" />
+      </View>
       <SearchField text={text} onChangeText={onChangeText} />
+
       <View style={styles.sliderContainer}>
         <HomeSlider />
       </View>
+
       <Text>{text}</Text>
-      <Text> all categories222</Text>
-      <ScrollView
-        style={styles.scrollView}
-        horizontal
-      >
-        {categoryData.map(category =>
-          <CategorySmallLabal categoryData={category} />)}
-      </ScrollView>
-      <Text> all categories</Text>
+
       <View>
-        <ScrollView horizontal  style={styles.TrendContainer}>
+        <ScrollView style={styles.scrollView}  horizontal>
+          {categoryData.map(category =>
+            <CategorySmallLabal categoryData={category} />)}
+        </ScrollView>
+        <ScrollView horizontal style={styles.TrendContainer}>
           {TrendDishData?.map((dish) => {
             return (
-              <View style={styles.row}>
+              <View style={styles.DishCard}>
                 <DishCard dish={dish} />
               </View>
             )
@@ -59,36 +65,25 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   TrendContainer: {
-    // flexDirection: 'row',  // Ensures the cards are displayed horizontally
-    backgroundColor: '#F5F5',  // Adjust the background if needed
     padding: 16,
-    // flexWrap: "wrap",  // Allow wrapping for multiple rows if there are many items
-    // justifyContent: 'space-between', // Optional: Adjust spacing between cards
   },
 
   scrollView: {
-    backgroundColor: 'pink',
     padding: 2,
-    flexGrow: 0,
+    height: 70
   },
   sliderContainer: {
     backgroundColor: 'pink',
     height: "35%",
     padding: 2,
     // marginBottom:
-    marginTop:30
+    marginTop: 30
   }
   ,
-  row: {
-    // flex: 1,
-    // width: "100%",
-    // height: "90%",
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-    // marginBottom: 20,
-    // flexWrap: "wrap",
-    // overflowX:true,
-    
+  DishCard: {
+    justifyContent: 'space-between',
+    margin: 10,
+
   }
 
 
