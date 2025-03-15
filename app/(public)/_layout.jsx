@@ -11,13 +11,16 @@ export default function PublicLayout() {
 
   // If authenticated, redirect to private routes
   if (user) {
+    console.log("🚀 ~ PublicLayout ~ user:", user)
     return <Redirect href="/(private)" />;
   }
 
   return (
     <Stack>
-      <Stack.Screen name="login" options={{ headerShown: true, title: 'Login' }} />
-      <Stack.Screen name="signup" options={{ headerShown: true, title: 'Sign Up' }} />
+      <Stack.Screen name="Login" options={{ headerShown: true, title: 'Login' }} />
+      <Stack.Screen name="SignUp" options={{ headerShown: true, title: 'Sign Up' }} />
+      <Stack.Screen name="NotAutorized" options={{ headerShown: true, title: 'Not Autorized' }} />
+
     </Stack>
   );
 }
