@@ -10,10 +10,10 @@ export default function PublicLayout() {
 //   }
 
   // If authenticated, redirect to private routes
-  if (user) {
-    console.log("🚀 ~ PublicLayout ~ user:", user)
-    return <Redirect href="/(private)" />;
-  }
+  // if (user) {
+  //   console.log("🚀 ~ PublicLayout ~ user:", user)
+  //   return <Redirect href="/(privat)" />;
+  // }
 
   return (
     <Stack>
