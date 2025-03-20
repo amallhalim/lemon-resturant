@@ -4,6 +4,7 @@ import {
   Text,
   ScrollView,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 import { useEffect, useState } from 'react';
 
@@ -15,11 +16,26 @@ import HomeSlider from "../../../pages/home/HomeSlider"
 import DishCard from "../../../pages/home/DishCard"
 import TrendDishData from "../../../StaticData/TrendDishData"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { collection, addDoc } from "firebase/firestore";
+ import{DB} from "../../../config/firebase"
 export default function Home() {
   const [text, onChangeText] = useState('Useless Text');
+  const [errorState, setErrorState] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
 
 
-
+  const addUser = async () => {
+    try {
+      await addDoc(collection(DB, "users"), {
+        name: "John Doe",
+        email: "johndoe@example.com",
+      });
+      console.log("User added!");
+    } catch (error) {
+      console.error("Error adding user:", error);
+    }
+  };
   return (
     <View style={styles.container} >
       <View style={{ flexDirection: "row", justifyContent: "space-between", padding: 10 }}>
@@ -29,6 +45,13 @@ export default function Home() {
         <Text>Hey Halal, Good Afternoon!</Text>
         <FontAwesome5 name="list-ul" size={24} color="black" />
       </View>
+      {errorState ? <Text style={{ color: 'red' }}>{errorState}</Text> : null}
+
+<TouchableOpacity style={{}} onPress={addUser}>
+  <Text style={{}}>Add Test Data</Text>
+</TouchableOpacity>
+
+
       <SearchField text={text} onChangeText={onChangeText} />
 
       <View style={styles.sliderContainer}>
