@@ -1,13 +1,15 @@
 import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View } from 'react-native';
 import React from 'react';
-import { Colors } from '../../constants/Colors';
 import { useRouter } from 'expo-router';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Controller, useForm } from 'react-hook-form';
 import { object, string } from 'yup';
+
 import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorText from '../../components/common/text/ErrorText';
 import BackGroundFood3 from "../../assets/background/loginBG.jpg";
-
+import { Colors } from '../../constants/Colors';
+ import {Auth} from "../../config/firebase"
 const validationSchema = object({
   password: string().trim().required("Password is required."),
   email: string().trim().required("Email is required.").email("Please enter a valid email address."),
@@ -26,8 +28,21 @@ export default function SignUp() {
   });
 
   const onSubmit = (data) => {
+
+createUserWithEmailAndPassword(Auth, data?.email, data?.password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+    console.log("🚀 ~ .then ~ user:", user)
     console.log("Form Data:", data);
     router.push('/Home');
+
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("🚀 ~ onSubmit ~ errorCode:", errorCode)
+    // ..
+  });
   };
 // uef
   return (

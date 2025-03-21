@@ -9,10 +9,13 @@ import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorText from '../../components/common/text/ErrorText';
 
+import {signInWithEmailAndPassword } from "firebase/auth";
+import { Auth } from '../../config/firebase';
+
 const validationSchema = object({
   password: string().trim().required("Password is required."),
   email: string().trim().required("Email is required.").email("Please enter a valid email address."),
-  name: string().trim().required("Name is required.").min(3, "Name should have at least 3 characters.").max(20, "Name should not exceed 20 characters.")
+  // name: string().trim().required("Name is required.").min(3, "Name should have at least 3 characters.").max(20, "Name should not exceed 20 characters.")
 });
 const defaultValues = {
   password: "",
@@ -26,8 +29,23 @@ export default function Login() {
     defaultValues: defaultValues, resolver: yupResolver(validationSchema)
   })
   const onSubmit = (data) => {
-    console.log("onsubmit ===", data);
-    router.navigate("/Home")
+  console.log("🚀 ~ onSubmit ~ data:", data)
+
+    signInWithEmailAndPassword(Auth, data?.email, data?.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        console.log("onsubmit ===user", user);
+    
+        router.navigate("/Home")
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log("🚀 ~ onSubmit ~ errorCode:", errorCode)
+      });
+
   };
 
   // console.log(watch("name"));
