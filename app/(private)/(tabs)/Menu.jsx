@@ -1,14 +1,22 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Button } from 'react-native';
-import React, { useState } from 'react';
-import FoodItems from "../../../StaticData/FoodItems"
+import React, { useEffect, useState } from 'react';
 import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 import { useProductStore } from '@/store';
+import useFetchDish from '@/hooks/useFetchDish';
 
 export default function Menu() {
   const [allOrderData, setOrderData] = useState([])
-  // console.log(JSON.stringify(allOrderData, null, 2));
+  const [allDishesData ,setallDishs] = useState([]) 
   const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);
+const {dishesData ,fetchDish}=useFetchDish()
+useEffect(() => {
+  fetchDish()
+},[])
+
+useEffect(() => {
+  setallDishs(dishesData)
+},[dishesData])
 
   const onchangeDishCount = (newCount) => {
     setOrderData((prev) => {
@@ -68,7 +76,7 @@ export default function Menu() {
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
       <View style={styles.row}>
-        {FoodItems.map((dish, index) => (
+        {allDishesData.map((dish, index) => (
           <Card key={index}  dish={dish}
             onchangeDishCount={onchangeDishCount}
           />

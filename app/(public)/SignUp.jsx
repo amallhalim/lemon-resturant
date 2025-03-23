@@ -10,6 +10,7 @@ import ErrorText from '../../components/common/text/ErrorText';
 import BackGroundFood3 from "../../assets/background/loginBG.jpg";
 import { Colors } from '../../constants/Colors';
  import {Auth} from "../../config/firebase"
+import useAddNewUser from '../../hooks/useAddNewUser';
 const validationSchema = object({
   password: string().trim().required("Password is required."),
   email: string().trim().required("Email is required.").email("Please enter a valid email address."),
@@ -23,6 +24,7 @@ const defaultValues = {
 export default function SignUp() {
   const router = useRouter();
 
+  const { user, userError, userLoading, addNewUser} =useAddNewUser()
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: defaultValues, resolver: yupResolver(validationSchema)
   });
@@ -32,12 +34,22 @@ export default function SignUp() {
 createUserWithEmailAndPassword(Auth, data?.email, data?.password)
   .then((userCredential) => {
     const user = userCredential.user;
+    addNewUser({
+      name :"",
+      email:user?.email,
+      uid :user?.uid,
+      createdAt : Date.now(),
+      enabled : true,
+      deleted : false
+
+    })
     console.log("🚀 ~ .then ~ user:", user)
     console.log("Form Data:", data);
     router.push('/Home');
 
   })
   .catch((error) => {
+    console.log("🚀 ~ onSubmit ~ error:", error)
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log("🚀 ~ onSubmit ~ errorCode:", errorCode)

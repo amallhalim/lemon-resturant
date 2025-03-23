@@ -1,4 +1,4 @@
-const FoodItems = [
+const allDishesData = [
   {
     id: "1",
     img: require('../assets/dishs/burgger/burger2.jpg'),
@@ -97,4 +97,4 @@ const FoodItems = [
   }
 ];
 
-export default FoodItems;
+export default allDishesData;

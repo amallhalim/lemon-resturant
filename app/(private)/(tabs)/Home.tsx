@@ -18,13 +18,43 @@ import TrendDishData from "../../../StaticData/TrendDishData"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { collection, addDoc } from "firebase/firestore";
  import{DB} from "../../../config/firebase"
+ import useAddSingleDish from "../../../hooks/useAddSingleDish"
+ import useAddAllDish from "../../../hooks/useAddAllDish"
+ import useFetchDish from "../../../hooks/useFetchDish"
+ import useAddAllCategory from "../../../hooks/useAddAllCatergory"
+ import useFetchCategory from "../../../hooks/useFetchCategory"
 export default function Home() {
   const [text, onChangeText] = useState('Useless Text');
   const [errorState, setErrorState] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+const [categoriesData, setCategoriesData] = useState([]);
+console.log("🚀 ~ Home ~ categoriesData:", categoriesData)
 
+const {dishs, AddSingleDish}=useAddSingleDish()
+const {allDishs, AddAllDish}=useAddAllDish()
+// const { categories, AddAllCategory}=useAddSingleCategory()
+// console.log("🚀 ~ Home ~ categories:", categories)
+const {dishesData ,fetchDish}=useFetchDish()
+const { allCategorys, AddAllCategory}=useAddAllCategory()
+const { categories,catergoryLoading,categoryError,fetchAllCategory}=useFetchCategory()
+console.log("🚀 ~ Home ~ categories:", categories)
 
+//  add all dishes 
+useEffect(() => {
+  // AddAllDish()
+  // fetchDish()
+  // AddAllCategory()
+  console.log("🚀 ~ Home ~ dishesData:", dishesData)
+  // console.log("🚀 ~ Home ~ s:dishs", allDishs)
+},[])
+useEffect(() => {
+  fetchAllCategory()
+},[])
+useEffect(() => {
+  // fetchAllCategory()
+  setCategoriesData(categories)
+},[categories])
   const addUser = async () => {
     try {
       await addDoc(collection(DB, "users"), {
@@ -47,9 +77,15 @@ export default function Home() {
       </View>
       {errorState ? <Text style={{ color: 'red' }}>{errorState}</Text> : null}
 
+<TouchableOpacity style={{ backgroundColor: "green"}} onPress={AddAllDish}>
+  <Text style={{}}>AddAllDish</Text>
+</TouchableOpacity>
+
+
+
 <TouchableOpacity style={{}} onPress={addUser}>
   <Text style={{}}>Add Test Data</Text>
-</TouchableOpacity>
+  </TouchableOpacity>
 
 
       <SearchField text={text} onChangeText={onChangeText} />
@@ -62,7 +98,7 @@ export default function Home() {
 
       <View>
         <ScrollView style={styles.scrollView}  horizontal>
-          {categoryData.map(category =>
+          {categoriesData.map(category =>
             <CategorySmallLabal categoryData={category} />)}
         </ScrollView>
         <ScrollView horizontal style={styles.TrendContainer}>
