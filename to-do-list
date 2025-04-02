@@ -1,5 +1,52 @@
-state mangement
-dish details page
-add to card 
-cardpage
-componat for size 
+1. Sign In as Guest & Show Data for Temporary User
+Allow users to sign in as a guest using Firebase's anonymous authentication. After signing in, display data that is temporary for the guest. You can store this data either locally or in Firestore.
+
+Steps:
+
+Sign in as a guest using Firebase Authentication.
+
+Fetch and display temporary data for the guest user.
+
+Store this data temporarily in local state or in Firestore, depending on your needs (e.g., for the session or later retrieval).
+
+2. Move Search to the Menu Page
+Current State: The search feature might be visible on the home page.
+
+New Behavior: Move the search functionality exclusively to the menu page.
+
+3. Search for Plates in the Menu
+New Feature: Add a search function inside the menu page where users can search for plates.
+
+When a user clicks on a plate, they should be directed to the dish details page.
+
+4. Clicking on Categories in the Menu
+New Behavior: When a user clicks on a category, navigate to the menu page.
+
+Apply a filter based on the selected category to show relevant dishes.
+
+5. Add a "Trending Dishes" Section
+Add a new key for "Trending Dishes."
+
+Fetch the trending dishes directly from Firebase to display them on the home or menu page.
+
+6. Add "Add to Cart" Functionality
+Add "Add to Cart" functionality in:
+
+Home Page: Allow users to add items to the cart directly from the home page.
+
+Menu Page: Enable adding items to the cart from the menu.
+
+Dish Details Page: Allow users to add a dish to the cart from the dish details page.
+
+7. Add a Loader for Fetching Data
+Implement a loader to show while data is being fetched. This could be a simple spinner or loading animation that appears when data is being loaded from Firebase.
+
+8. Profile Page: Show/Edit Data & Logout
+Profile Page:
+
+Display the user's data (e.g., name, email, etc.).
+
+Allow the user to edit their profile information.
+
+Provide a logout option for the user to sign out from the app.
+
