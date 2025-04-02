@@ -1,62 +1,71 @@
 import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Controller, useForm } from 'react-hook-form';
 import { object, string } from 'yup';
-
 import { yupResolver } from '@hookform/resolvers/yup';
+import Icon from 'react-native-vector-icons/FontAwesome'; // You can choose any icon library
+
 import ErrorText from '../../components/common/text/ErrorText';
 import BackGroundFood3 from "../../assets/background/loginBG.jpg";
 import { Colors } from '../../constants/Colors';
- import {Auth} from "../../config/firebase"
+import { Auth } from "../../config/firebase"
 import useAddNewUser from '../../hooks/useAddNewUser';
+
 const validationSchema = object({
   password: string().trim().required("Password is required."),
   email: string().trim().required("Email is required.").email("Please enter a valid email address."),
+  name: string().trim().required("Name is required.").max(10, "please enter less than 10 character").min(3, "please enter more than 3 character"),
+
 });
 
 const defaultValues = {
   password: "",
   email: "",
+  name: ""
 }
 
 export default function SignUp() {
   const router = useRouter();
 
-  const { user, userError, userLoading, addNewUser} =useAddNewUser()
+  const [userName, setUserName] = useState();
+  const [signError, setSignError] = useState();
+  const [showPassword, setShowPassword] = useState(false);
+
+
+  const { user, userError, userLoading, addNewUser } = useAddNewUser()
+
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: defaultValues, resolver: yupResolver(validationSchema)
   });
-
-  const onSubmit = (data) => {
-
-createUserWithEmailAndPassword(Auth, data?.email, data?.password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    addNewUser({
-      name :"",
-      email:user?.email,
-      uid :user?.uid,
-      createdAt : Date.now(),
-      enabled : true,
-      deleted : false
-
-    })
-    console.log("🚀 ~ .then ~ user:", user)
-    console.log("Form Data:", data);
-    router.push('/Home');
-
-  })
-  .catch((error) => {
-    console.log("🚀 ~ onSubmit ~ error:", error)
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log("🚀 ~ onSubmit ~ errorCode:", errorCode)
-    // ..
-  });
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
-// uef
+  const onSubmit = (data) => {
+    createUserWithEmailAndPassword(Auth, data?.email, data?.password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        addNewUser({
+          name: userName,
+          email: user?.email,
+          uid: user?.uid,
+          createdAt: Date.now(),
+          enabled: true,
+          deleted: false
+        })
+        router.push('/Home');
+
+      })
+      .catch((error) => {
+        console.log("🚀 ~ onSubmit ~ error:", error)
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setSignError(errorCode)
+        console.log("🚀 ~ onSubmit ~ errorCode:", errorCode)
+      });
+  };
+
   return (
     <ImageBackground
       source={BackGroundFood3}
@@ -78,6 +87,21 @@ createUserWithEmailAndPassword(Auth, data?.email, data?.password)
 
         <Controller
           control={control}
+          name="name"
+          render={({ field }) => (
+            <TextInput
+              style={[styles.input, errors.name && styles.errorInput]}
+              placeholder="Name"
+              onChangeText={field.onChange}
+              value={field.value}
+              onChange={setUserName(field.value)}
+            />
+
+          )}
+        />
+        {errors.name && <ErrorText text={errors.name.message} />}
+        <Controller
+          control={control}
           name="email"
           render={({ field }) => (
             <TextInput
@@ -89,19 +113,36 @@ createUserWithEmailAndPassword(Auth, data?.email, data?.password)
           )}
         />
         {errors.email && <ErrorText text={errors.email.message} />}
-
         <Controller
           name="password"
           control={control}
           render={({ field }) => (
-            <TextInput
-              style={[styles.input, errors.password && styles.errorInput]}
-              placeholder="Password"
-              secureTextEntry
-              onChangeText={field.onChange}
-              value={field.value}
-            />
+            <View style={{
+              position: 'relative',
+              width: "100%",
+              backgroundColor: Colors.light.background.secondary,
+              borderRadius: 8,
+              marginBottom: 10,
+              color: Colors.light.font.lightGray
+              , margin: 0
+            }}>
+              <TextInput
+                style={[styles.input, errors.password && styles.errorInput]}
+                placeholder="Password"
+                secureTextEntry={!showPassword}
+                onChangeText={field.onChange}
+                value={field.value}
+              />
+              <TouchableOpacity
+                onPress={togglePasswordVisibility}
+                style={{ position: 'absolute', right: 15, top: 15 }}
+              >
+                <Icon name={showPassword ? 'eye-slash' : 'eye'} size={20} color="gray" />
+              </TouchableOpacity>
+            </View>
           )}
+
+
         />
         {errors.password && <ErrorText text={errors.password.message} />}
 
@@ -111,6 +152,7 @@ createUserWithEmailAndPassword(Auth, data?.email, data?.password)
         >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
+        {signError && <ErrorText text={signError} />}
 
         <TouchableOpacity
           style={styles.guestButton}
@@ -201,14 +243,13 @@ const styles = StyleSheet.create({
   guestButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop:20
+    marginTop: 20
   },
   guestButtonText: {
     color: Colors.light.primary[800],
     fontSize: 18,
     fontWeight: 'bold',
     textDecorationLine: 'underline',
-
   },
   signUpContainer: {
     flexDirection: 'row',

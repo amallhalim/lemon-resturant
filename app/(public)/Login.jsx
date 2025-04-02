@@ -1,5 +1,5 @@
 import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View, Button } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Colors } from '../../constants/Colors';
 import { useRouter } from 'expo-router';
 // import BackGroundFood3 from "../assets/background/loginBG.jpg"
@@ -8,8 +8,9 @@ import { Controller, useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import ErrorText from '../../components/common/text/ErrorText';
+import Icon from 'react-native-vector-icons/FontAwesome'; // You can choose any icon library
 
-import {signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { Auth } from '../../config/firebase';
 
 const validationSchema = object({
@@ -24,12 +25,17 @@ const defaultValues = {
 
 export default function Login() {
   const router = useRouter();
+  const [signError, setSignError] = useState();
+  const [showPassword, setShowPassword] = useState(false);
 
   const { control, handleSubmit, watch, formState: { errors }, } = useForm({
     defaultValues: defaultValues, resolver: yupResolver(validationSchema)
   })
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  }
   const onSubmit = (data) => {
-  console.log("🚀 ~ onSubmit ~ data:", data)
+    console.log("🚀 ~ onSubmit ~ data:", data)
 
     signInWithEmailAndPassword(Auth, data?.email, data?.password)
       .then((userCredential) => {
@@ -37,12 +43,13 @@ export default function Login() {
         const user = userCredential.user;
         // ...
         console.log("onsubmit ===user", user);
-    
+
         router.navigate("/Home")
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        setSignError(errorCode)
         console.log("🚀 ~ onSubmit ~ errorCode:", errorCode)
       });
 
@@ -71,7 +78,7 @@ export default function Login() {
           control={control}
           name="email"
           render={({ field }) => {
-            const { onChange, onBlur, value, ref} = field;
+            const { onChange, onBlur, value, ref } = field;
             return (
               <TextInput
                 style={[styles.input, errors.email && styles.errorInput]}
@@ -89,28 +96,45 @@ export default function Login() {
           name='password'
           control={control}
           render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              style={[styles.input, errors.password && styles.errorInput]}
-              placeholder="Password"
-              labal="Password"
-              secureTextEntry={true}
-              placeholderTextColor={Colors.light.font.lightGray}
-            />
+            <View style={{
+              position: 'relative',
+              width: "100%",
+              backgroundColor: Colors.light.background.secondary,
+              borderRadius: 8,
+              marginBottom: 10,
+              color: Colors.light.font.lightGray
+              , margin: 0
+            }}>
+
+              <TextInput
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                style={[styles.input, errors.password && styles.errorInput]}
+                placeholder="Password"
+                labal="Password"
+                secureTextEntry={!showPassword}
+                placeholderTextColor={Colors.light.font.lightGray}
+              />
+              <TouchableOpacity
+                onPress={togglePasswordVisibility}
+                style={{ position: 'absolute', right: 15, top: 15 }}
+              >
+                <Icon name={showPassword ? 'eye-slash' : 'eye'} size={20} color="gray" />
+              </TouchableOpacity>
+            </View>
           )
           }
         />
         {errors.password && <ErrorText text={errors.password.message} />}
 
         <TouchableOpacity
-          style={[styles.button, { marginTop: 20 ,marginBottom:0}]}
+          style={[styles.button, { marginTop: 20, marginBottom: 0 }]}
           onPress={handleSubmit(onSubmit)}
         >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={{ width: '100%',}}>
+        <TouchableOpacity style={{ width: '100%', }}>
           <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         </TouchableOpacity>
 
@@ -205,12 +229,12 @@ const styles = StyleSheet.create({
   buttonText: {
     color: Colors.light.font.white,
     fontSize: 18,
-    marginTop:"20px"
+    marginTop: "20px"
   },
   guestButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom:10,
+    marginBottom: 10,
   },
   guestButtonText: {
     color: Colors.light.primary[800],
