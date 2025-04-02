@@ -1,7 +1,7 @@
 import { Text, StyleSheet, TouchableOpacity, ImageBackground, TextInput, View } from 'react-native';
 import React, { useState } from 'react';
 import { useRouter } from 'expo-router';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInAnonymously } from 'firebase/auth';
 import { Controller, useForm } from 'react-hook-form';
 import { object, string } from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -42,6 +42,17 @@ export default function SignUp() {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const signAsGuest = () => {
+    signInAnonymously(Auth)
+      .then(() => {
+        router.push('/Home')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.error(`Error signing in as guest: [${errorCode}] ${errorMessage}`);
+        setSignError("Failed to sign in as guest. Please try again.");
+      })}
   const onSubmit = (data) => {
     createUserWithEmailAndPassword(Auth, data?.email, data?.password)
       .then((userCredential) => {
@@ -156,7 +167,7 @@ export default function SignUp() {
 
         <TouchableOpacity
           style={styles.guestButton}
-          onPress={() => router.push('/Home')}
+          onPress={signAsGuest}
         >
           <Text style={styles.guestButtonText}>Continue as Guest</Text>
         </TouchableOpacity>
