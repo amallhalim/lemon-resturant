@@ -1,7 +1,13 @@
+import { useUserStore } from "@/store";
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 export default function Profile() {
+
+  const user = useUserStore(state=>state.user)
+  const clearUser = useUserStore(state=>state.clearUser)
+  console.log("🚀 ~ Profile ~ user:", user)
+  
   return (
     <View style={styles.container}>
       {/* Profile Picture */}
@@ -11,8 +17,8 @@ export default function Profile() {
       />
 
       {/* User Information */}
-      <Text style={styles.userName}>John Doe</Text>
-      <Text style={styles.userEmail}>johndoe@example.com</Text>
+      <Text style={styles.userName}>{user?.name}</Text>
+      <Text style={styles.userEmail}>{user?.email}</Text>
       <Text style={styles.userLocation}>📍 New York, USA</Text>
 
       {/* Edit Profile Button */}
@@ -21,7 +27,7 @@ export default function Profile() {
       </TouchableOpacity>
 
       {/* Logout Button */}
-      <TouchableOpacity style={styles.logoutButton}>
+      <TouchableOpacity style={styles.logoutButton} onPress={clearUser}>
         <Text style={styles.logoutButtonText}>Logout</Text>
       </TouchableOpacity>
     </View>
