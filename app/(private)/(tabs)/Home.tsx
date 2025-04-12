@@ -23,6 +23,7 @@ import { collection, addDoc } from "firebase/firestore";
  import useFetchDish from "../../../hooks/useFetchDish"
  import useAddAllCategory from "../../../hooks/useAddAllCatergory"
  import useFetchCategory from "../../../hooks/useFetchCategory"
+import { useUserStore } from '@/store';
 export default function Home() {
   const [text, onChangeText] = useState('Useless Text');
   const [errorState, setErrorState] = useState('');
@@ -68,6 +69,9 @@ useEffect(() => {
       console.error("Error adding user:", error);
     }
   };
+  const user = useUserStore(state=>state.user)
+  console.log("🚀 ~ Home ~ user:", user)
+
   return (
     <View style={styles.container} >
       <View style={{ flexDirection: "row", justifyContent: "space-between", padding: 10 }}>

@@ -4,7 +4,7 @@ import { create } from "zustand";
 
 const useUserStore = create((set) => ({
   // user: null,
-  user:  { id: 1, name: 'amal', email: 'amal@google.com' } ,
+  user:  {} ,
   setUser: (userData) => set({ user: userData }),
   clearUser: () => set({ user: { id: null, name: '', email: '' } }),
   promoCode:"",

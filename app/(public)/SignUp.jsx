@@ -35,6 +35,7 @@ export default function SignUp() {
 
 
   const { user, userError, userLoading, addNewUser } = useAddNewUser()
+  console.log("🚀 ~ SignUp ~ user:", user)
 
   const { control, handleSubmit, formState: { errors } } = useForm({
     defaultValues: defaultValues, resolver: yupResolver(validationSchema)

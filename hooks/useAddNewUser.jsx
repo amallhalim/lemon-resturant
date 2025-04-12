@@ -1,25 +1,32 @@
 import React, { useState } from 'react'
 import { DB } from '../config/firebase'
 import { doc, setDoc } from 'firebase/firestore'
+import useUserStore from '../store/userStore'
 
 export default function useAddNewUser() {
-  const [user, setUser] = useState(null)
-  const [userError, setUserError] = useState(null)
-  const [userLoading, setUserLoading] = useState(false)
+  const [user, setUserData] = useState(null)
+  const [userError, setUserDataError] = useState(null)
+  const [userLoading, setUserDataLoading] = useState(false)
 
-  const addNewUser = (user) => {
-    setUserLoading(true)
-    const docRef = setDoc(doc(DB, "users",user?.uid), user)
+  const setUser = useUserStore(state => state.setUser);
+
+  const addNewUser = async(user) => {
+    console.log("🚀 ~ addNewUser ~ user:", user)
+    setUserDataLoading(true)
+    const docRef =await setDoc(doc(DB, "users",user?.uid), user)
     try {
-      if (docRef.exists()) {
+      if (await docRef.exists()) {
+        setUserData(docRef.data())
         setUser(docRef.data())
-        setUserLoading(false)
+        setUserDataLoading(false)
+
       }
+        console.log("🚀 ~ addNewUser ~ docRef.data():", docRef.data())
     } catch (error) {
-      setUserError(error.message)
+      setUserDataError(error.message)
 
     }
-    setUserLoading(false)
+    setUserDataLoading(false)
 
   }
   return { user, userError, userLoading, addNewUser }

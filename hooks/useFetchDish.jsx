@@ -10,8 +10,6 @@ export default function useFetchDish() {
 
 
     const fetchDish = async (filterKey) => {
-    console.log("🚀 ~ fetchDish ~ filterKey:", filterKey)
-
         setfetchDishsLoading(true)
         try {
             let quary = collection(DB, "dishes")

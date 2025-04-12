@@ -4,12 +4,10 @@ import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 
 export default function DishCard({ dish }) {
-    console.log("🚀 ~ DishCard ~ dish:", dish.img)
     const [count, useCount] = useState(0);
     const [allOrderData, setOrderData] = useState([])
     // console.log(JSON.stringify(allOrderData, null, 2));
     // const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);
-  
     return (
         <View style={styles.card}>
             <TouchableOpacity
