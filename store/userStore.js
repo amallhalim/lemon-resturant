@@ -6,7 +6,7 @@ const useUserStore = create((set) => ({
   // user: null,
   user:  {} ,
   setUser: (userData) => set({ user: userData }),
-  clearUser: () => set({ user: { id: null, name: '', email: '' } }),
+  clearUser: () => set({ user: {} }),
   promoCode:"",
   UpdatePromoCode:(code)=>set({promoCode:code})
 }));
