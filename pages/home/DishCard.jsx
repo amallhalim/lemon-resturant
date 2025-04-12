@@ -4,6 +4,7 @@ import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 
 export default function DishCard({ dish }) {
+    console.log("🚀 ~ DishCard ~ dish:", dish.img)
     const [count, useCount] = useState(0);
     const [allOrderData, setOrderData] = useState([])
     // console.log(JSON.stringify(allOrderData, null, 2));
@@ -23,7 +24,7 @@ export default function DishCard({ dish }) {
             </TouchableOpacity>
             <Text style={styles.cardTitle}>{dish?.name}</Text>
             <View style={styles.menuItem}>
-                <Text style={styles.menuItemPrice}>{dish?.price}</Text>
+                <Text style={styles.menuItemPrice}>eeeeee{dish?.price}</Text>
                 <TouchableOpacity style={styles.button} onPress={() => {
                     useCount(count + 1)
                     // onchangeDishCount(

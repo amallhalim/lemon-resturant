@@ -51,11 +51,11 @@ useEffect(() => {
 },[categories])
 
 
-const {dishesData ,fetchDish}=useFetchDish()
+// const {dishesData ,fetchDish}=useFetchDish()
 
-useEffect(() => {
-  fetchDish({key: 'trend',value: true})
-},[])
+// useEffect(() => {
+//   fetchDish({key: 'trend',value: true})
+// },[])
 
   const addUser = async () => {
     try {
@@ -104,7 +104,7 @@ useEffect(() => {
             <CategorySmallLabal categoryData={category} />)}
         </ScrollView>
         <ScrollView horizontal style={styles.TrendContainer}>
-          {dishesData?.map((dish) => {
+          {TrendDishData?.map((dish) => {
             return (
               <View style={styles.DishCard}>
                 <DishCard dish={dish} />

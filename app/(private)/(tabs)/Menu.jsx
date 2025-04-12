@@ -4,19 +4,21 @@ import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 import { useProductStore } from '@/store';
 import useFetchDish from '@/hooks/useFetchDish';
+import allDishesData from "../../../StaticData/allDishesData"
 
 export default function Menu() {
   const [allOrderData, setOrderData] = useState([])
-  const [allDishesData ,setallDishs] = useState([]) 
+  // const allDishesData =
+  // const [allDishesData ,setallDishs] = useState([]) 
   const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);
-const {dishesData ,fetchDish}=useFetchDish()
-useEffect(() => {
-  fetchDish()
-},[])
+// const {dishesData ,fetchDish}=useFetchDish()
+// useEffect(() => {
+//   fetchDish()
+// },[])
 
-useEffect(() => {
-  setallDishs(dishesData)
-},[dishesData])
+// useEffect(() => {
+//   setallDishs(dishesData)
+// },[dishesData])
 
   const onchangeDishCount = (newCount) => {
     setOrderData((prev) => {
@@ -40,9 +42,8 @@ useEffect(() => {
         <Image
           style={styles.tinyLogo}
           source={dish?.img}
-          
           />
-          </TouchableOpacity>
+        </TouchableOpacity>
         <Text style={styles.cardTitle}>{dish.name}</Text>
         <View style={styles.menuItem}>
           <Text style={styles.menuItemPrice}>{dish.price}</Text>
@@ -54,23 +55,22 @@ useEffect(() => {
           }
           }>
             {count === 0 ?(
-                 <View style={styles.ContainButton}>
-                 <Text style={styles.buttonText}>Add +</Text>
-               </View>
+              <View style={styles.ContainButton}>
+                <Text style={styles.buttonText}>Add +</Text>
+              </View>
             ):(
               <View style={styles.ContainButton}>
                 <Text style={styles.circleButton}>-</Text>
                 <Text style={styles.buttonText}>{count == 0 ? 0 : count}</Text>
                 <Text style={styles.circleButton}> +</Text>
               </View>
-              )}
+            )}
           </TouchableOpacity>
         </View>
       </View>
-    )
-  
+    );
   };
-
+  
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.header}>🍽️ Menu</Text>
@@ -99,6 +99,10 @@ const styles = StyleSheet.create({
     width: 122,
     height: 80,
     borderRadius: 20,
+    borderBlockColor: Colors.light.primary[800],
+    borderWidth: 1,
+    borderColor: Colors.light.primary[800],
+    marginBottom: 10,
   },
   row: {
     flex: 1,
