@@ -35,8 +35,6 @@ export default function Login() {
     setShowPassword(!showPassword);
   }
   const onSubmit = (data) => {
-    console.log("🚀 ~ onSubmit ~ data:", data)
-
     signInWithEmailAndPassword(Auth, data?.email, data?.password)
       .then((userCredential) => {
         // Signed in 

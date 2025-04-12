@@ -7,8 +7,6 @@ export default function PrivateLayout() {
   const router = useRouter();
 const user = useUserStore(state=>state.user)
   // Log user state for debugging
-  console.log("PrivateLayout ~ user:", user);
-
   // // Initialize authentication check on mount
   // useEffect(() => {
   //   checkAuth();

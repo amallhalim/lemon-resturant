@@ -4,9 +4,7 @@ import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
 
 export default function DishCard({ dish }) {
-    // console.log("🚀 ~ DishCard ~ dish:", dish)
     const [count, useCount] = useState(0);
-    // console.log("🚀 ~ Card ~ count:", count)
     const [allOrderData, setOrderData] = useState([])
     // console.log(JSON.stringify(allOrderData, null, 2));
     // const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);

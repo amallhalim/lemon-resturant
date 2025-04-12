@@ -8,7 +8,6 @@ export default function useAddNewUser() {
   const [userLoading, setUserLoading] = useState(false)
 
   const addNewUser = (user) => {
-    console.log("🚀 ~ addNewUser ~ user:", user)
     setUserLoading(true)
     const docRef = setDoc(doc(DB, "users",user?.uid), user)
     try {
