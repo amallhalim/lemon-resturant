@@ -119,5 +119,8 @@ const styles = StyleSheet.create({
       width: 122,
       height: 80,
       borderRadius: 20,
+      borderColor: "black",
+      backgroundColor: Colors.light.background.secondary,
+      borderWidth: 1,
     },
   });
