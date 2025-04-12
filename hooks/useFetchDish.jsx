@@ -10,12 +10,13 @@ export default function useFetchDish() {
 
 
     const fetchDish = async (filterKey) => {
+    console.log("🚀 ~ fetchDish ~ filterKey:", filterKey)
 
         setfetchDishsLoading(true)
         try {
             let quary = collection(DB, "dishes")
             if(filterKey&&filterKey.key&&filterKey.value){
-                quary =quary(q,where(filterKey.key, "==", filterKey.value))
+                quary = query(quary, where(filterKey.key, "==", filterKey.value));
             }
             const querySnapshot = await getDocs(quary);
             const dishes = querySnapshot.docs.map((doc) => {
