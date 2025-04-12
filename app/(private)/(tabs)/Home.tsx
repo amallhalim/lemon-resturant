@@ -29,23 +29,23 @@ export default function Home() {
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 const [categoriesData, setCategoriesData] = useState([]);
-console.log("🚀 ~ Home ~ categoriesData:", categoriesData)
+// console.log("🚀 ~ Home ~ categoriesData:", categoriesData)
 
 const {dishs, AddSingleDish}=useAddSingleDish()
 const {allDishs, AddAllDish}=useAddAllDish()
 // const { categories, AddAllCategory}=useAddSingleCategory()
 // console.log("🚀 ~ Home ~ categories:", categories)
-const {dishesData ,fetchDish}=useFetchDish()
+// const {dishesData ,fetchDish}=useFetchDish()
 const { allCategorys, AddAllCategory}=useAddAllCategory()
 const { categories,catergoryLoading,categoryError,fetchAllCategory}=useFetchCategory()
-console.log("🚀 ~ Home ~ categories:", categories)
+// console.log("🚀 ~ Home ~ categories:", categories)
 
 //  add all dishes 
 useEffect(() => {
   // AddAllDish()
   // fetchDish()
   // AddAllCategory()
-  console.log("🚀 ~ Home ~ dishesData:", dishesData)
+  // console.log("🚀 ~ Home ~ dishesData:", dishesData)
   // console.log("🚀 ~ Home ~ s:dishs", allDishs)
 },[])
 useEffect(() => {
@@ -55,6 +55,14 @@ useEffect(() => {
   // fetchAllCategory()
   setCategoriesData(categories)
 },[categories])
+
+
+const {dishesData ,fetchDish}=useFetchDish()
+// console.log("🚀 ~ Home ~ dishesData:", dishesData)
+useEffect(() => {
+  fetchDish({key: 'trend',value: true})
+},[])
+
   const addUser = async () => {
     try {
       await addDoc(collection(DB, "users"), {
@@ -102,7 +110,7 @@ useEffect(() => {
             <CategorySmallLabal categoryData={category} />)}
         </ScrollView>
         <ScrollView horizontal style={styles.TrendContainer}>
-          {TrendDishData?.map((dish) => {
+          {dishesData?.map((dish) => {
             return (
               <View style={styles.DishCard}>
                 <DishCard dish={dish} />

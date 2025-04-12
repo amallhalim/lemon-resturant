@@ -11,7 +11,7 @@ export default function useAddAllDish() {
       const addedDishes = [];
       for (let i = 0; i < allDishesData.length; i++) {
         const newDocRef = doc(dishRef); 
-        const dishWithId = { ...allDishesData[0], id: newDocRef.id };
+        const dishWithId = { ...allDishesData[i], id: newDocRef.id };
         await setDoc(newDocRef, dishWithId); 
         addedDishes.push(dishWithId);
       }

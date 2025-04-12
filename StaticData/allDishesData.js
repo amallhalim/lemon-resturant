@@ -7,6 +7,7 @@ const allDishesData = [
     price: 9.99,
     size: ["small", "medium", "large"],
     rate: 3,
+    trend: true,
     duration: 20,
     category: {
       id: "1",  // Category ID
@@ -24,6 +25,8 @@ const allDishesData = [
     size: ["small", "medium", "large"],
     rate: 3,
     duration: 20,
+    trend: true,
+
     category: {
       id: "2",  // Category ID
       name: "Meats",  // Category Name
@@ -40,6 +43,8 @@ const allDishesData = [
     size: ["small", "medium", "large"],
     rate: 3,
     duration: 20,
+        trend: true,
+
     category: {
       id: "3",  // Category ID
       name: "Pasta",  // Category Name
@@ -54,7 +59,8 @@ const allDishesData = [
     desc: 'A smooth and creamy tomato soup with a hint of basil.',
     price: 5.99,
     size: ["small", "medium", "large"],
-    rate: 3,
+    rate: 3,    trend: true,
+
     duration: 20,
     category: {
       id: "4",  // Category ID
@@ -70,7 +76,7 @@ const allDishesData = [
     desc: 'A hearty beef stew with tender chunks of beef and vegetables in a savory broth.',
     price: 15.99,
     size: ["small", "medium", "large"],
-    rate: 3,
+    rate: 3,  trend: true,
     duration: 20,
     category: {
       id: "2",  // Category ID
@@ -86,7 +92,7 @@ const allDishesData = [
     desc: 'Grilled salmon fillet served with a side of roasted potatoes.',
     price: 18.99,
     size: ["small", "medium", "large"],
-    rate: 3,
+    rate: 3,  trend: true,
     duration: 20,
     category: {
       id: "2",  // Category ID

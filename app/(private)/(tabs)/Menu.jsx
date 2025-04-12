@@ -25,7 +25,7 @@ useEffect(() => {
   }
   const Card = ({ dish, onchangeDishCount }) => {
     const [count, useCount] = useState(0);
-    console.log("🚀 ~ Card ~ count:", count)
+    // console.log("🚀 ~ Card ~ count:", count)
     return (
       <View style={styles.card}>
         <TouchableOpacity
