@@ -6,6 +6,7 @@ import useUserStore from '../../store/userStore';
 export default function PrivateLayout() {
   const router = useRouter();
 const user = useUserStore(state=>state.user)
+  console.log("🚀 ~ PrivateLayout ~ user:", user)
   // Log user state for debugging
   // // Initialize authentication check on mount
   // useEffect(() => {

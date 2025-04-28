@@ -1,54 +1,79 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { View, Text, StyleSheet, Pressable, Alert } from 'react-native'
 import { Colors } from '../../constants/Colors'
 
-export default function SizeOption() {
+export default function SizeOption({ onSelectSize, initialSize = "medium" }) {
+  const options = ['small', 'medium', 'large']
+  const [selectedSize, setSelectedSize] = useState(initialSize)
+  console.log("🚀 ~ SizeOption ~ selectedSize:", selectedSize)
 
-  const SizeOption = [{ value: "small" }, { value: "meduim" }, { value: "large" }]
+  useEffect(() => {
+    onSelectSize?.(selectedSize)
+  }, [selectedSize])
+
   return (
     <View>
       <View style={styles.container}>
-
-        <Text style={styles.title}>Size:  </Text>
-        {SizeOption?.map(({ value }) => (
-          (
-            <TouchableOpacity       
-                onPress={() => Alert.Alert('Left button pressed')}
->
-          <Text style={styles.icon}>{value}</Text>
-        </TouchableOpacity>
-
-        )
-        ))
-        }
+        <Text style={styles.title}>Size:</Text>
+        {options.map(value => (
+          <Pressable
+            key={value}
+            onPress={() => setSelectedSize(value)}
+            style={({ pressed }) => [
+              styles.button,
+              pressed && styles.buttonPressed,
+              selectedSize === value && styles.buttonSelected,
+            ]}
+          >
+            <Text style={
+             [styles.buttonText ,     
+                     selectedSize === value && 
+                     {color: Colors.light.primary[800]}]
+}>{value}</Text>
+          </Pressable>
+        ))}
       </View>
     </View>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
     flexDirection: 'row',
-    margin: 10
-    , flexWrap: "wrap"
+    flexWrap: 'wrap',
+    margin: 10,
+    alignItems: 'center',
   },
   title: {
     fontSize: 14,
-marginTop:8
+    marginRight: 6,
   },
-  icon: {
-    fontSize: 14,
-    color: "white",
+  button: {
     backgroundColor: Colors.light.primary[800],
-    marginBottom: 10,
     borderRadius: 50,
-    width: 60,
-    height: 29,
-    padding: 4,
-    textAlign: "center",
-    display: "inline",
-    margin: 3
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    margin: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+        color: 'white',
 
+  },
+  buttonPressed: {
+    opacity: 0.6,
+  },
+  buttonSelected: {
+    borderWidth: 2,
+    backgroundColor: Colors.light.primary[200],
+    color: Colors.light.primary[800],
+    borderColor: Colors.light.primary[800],
 
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+
+  },
+  buttonText: {
+        color: 'white',
+    fontSize: 14,
   },
 })

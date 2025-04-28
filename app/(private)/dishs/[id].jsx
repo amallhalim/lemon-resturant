@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import { useProductStore } from "../../../store"
 import { Entypo } from '@expo/vector-icons';
@@ -9,7 +9,12 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 export default function DishDetails() {
 
   const product = useProductStore(state => state.selectedproductData)
-
+  console.log("🚀 ~ DishDetails ~ product:", product)
+const [size, setSize] = useState("medium")
+const [count, setCount] = useState(0)
+  const onSelectSize = (size) => {
+    setSize(size)
+  }
   return (
     <View style={styles.container} key={product?.id}>
       <View style={styles.details}>
@@ -35,7 +40,7 @@ export default function DishDetails() {
           </View>
         </View>
         <Text style={styles.desc}> {product?.desc}</Text>
-        <SizeOption />
+        <SizeOption onSelectSize ={onSelectSize}/>
       </View>
       <View style={styles.info}>
         <View style={styles.footer}>
@@ -43,13 +48,17 @@ export default function DishDetails() {
             <Text style={styles.title}>{product?.price}</Text>
             <View style={styles.count}>
               <TouchableOpacity
-                onPress={() => Alert.Alert('Left button pressed')}>
+                onPress={() =>setCount(count + 1)}>
 
                 <Text style={styles.countCircle}>  + </Text>
               </TouchableOpacity>
-              <Text style={styles.countTitle}> {product?.duration}  </Text>
+              <Text style={styles.countTitle}> {count}  </Text>
               <TouchableOpacity
-                onPress={() => Alert.Alert('Left button pressed')}>
+                onPress={() => {
+                  if (count > 0)  setCount(count - 1)            
+                }}
+             
+              >  
                 <Text style={styles.countCircle}>  - </Text>
               </TouchableOpacity>
             </View>

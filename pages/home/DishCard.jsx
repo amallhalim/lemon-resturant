@@ -2,18 +2,19 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, Button } f
 import React, { useState } from 'react';
 import { Colors } from '@/constants/Colors';
 import { router } from 'expo-router';
+import { useProductStore } from '@/store';
 
 export default function DishCard({ dish }) {
     const [count, useCount] = useState(0);
     const [allOrderData, setOrderData] = useState([])
-    // console.log(JSON.stringify(allOrderData, null, 2));
-    // const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);
+    const updateSelectedProduct = useProductStore(state => state.updateSelectedProduct);
     return (
         <View style={styles.card}>
             <TouchableOpacity
                 onPress={() => {
                     router.push(`/dishs/${dish?.id}`)
-                    // updateSelectedProduct(dish)
+                    updateSelectedProduct(dish)
+                    console.log("🚀 ~ DishCard ~ dish:", dish)
                 }}>
                 <Image
                     style={styles.tinyLogo}
@@ -22,7 +23,7 @@ export default function DishCard({ dish }) {
             </TouchableOpacity>
             <Text style={styles.cardTitle}>{dish?.name}</Text>
             <View style={styles.menuItem}>
-                <Text style={styles.menuItemPrice}>eeeeee{dish?.price}</Text>
+                <Text style={styles.menuItemPrice}>{dish?.price}</Text>
                 <TouchableOpacity style={styles.button} onPress={() => {
                     useCount(count + 1)
                     // onchangeDishCount(
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
       borderRadius: 100, 
       alignItems: 'center', 
       justifyContent: 'center', 
+      borderColor: Colors.light.primary[800],
     },
     circleButton: {
       width: 20,
