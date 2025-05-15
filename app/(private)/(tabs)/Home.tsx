@@ -13,7 +13,7 @@ import SearchField from "../../../components/common/input/SearchField"
 import CategorySmallLabal from "../../../pages/home/CategorySmallLabal"
 import categoryData from "../../../StaticData/categoryData"
 import HomeSlider from "../../../pages/home/HomeSlider"
-import DishCard from "../../../pages/home/DishCard"
+import DishCardHome from "../../../pages/home/DishCardHome"
 import TrendDishData from "../../../StaticData/TrendDishData"
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { collection, addDoc } from "firebase/firestore";
@@ -23,7 +23,9 @@ import { collection, addDoc } from "firebase/firestore";
  import useFetchDish from "../../../hooks/useFetchDish"
  import useAddAllCategory from "../../../hooks/useAddAllCatergory"
  import useFetchCategory from "../../../hooks/useFetchCategory"
-import { useUserStore } from '@/store';
+import { useProductStore, useUserStore } from '@/store';
+// import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+
 export default function Home() {
   const [text, onChangeText] = useState('Useless Text');
   const [errorState, setErrorState] = useState('');
@@ -33,6 +35,12 @@ const [categoriesData, setCategoriesData] = useState([]);
 
 const {dishs, AddSingleDish}=useAddSingleDish()
 const {allDishs, AddAllDish}=useAddAllDish()
+
+
+
+const selectedProductsInCart = useProductStore((state) => state.selectedProductsInCart);
+console.log("🚀 ~ Home ~ selectedProductsInCart:", selectedProductsInCart)
+console.log("🚀 ~ Home ~ selectedProductsInCart:length", selectedProductsInCart?.length)
 
 const { allCategorys, AddAllCategory}=useAddAllCategory()
 const { categories,catergoryLoading,categoryError,fetchAllCategory}=useFetchCategory()
@@ -80,6 +88,16 @@ useEffect(() => {
         }} />
         <Text>Hey Halal, Good Afternoon!</Text>
         <FontAwesome5 name="list-ul" size={24} color="black" />
+        <FontAwesome5 name="cart-plus" size={24} color="black" />
+        {selectedProductsInCart.length>0&&(
+          <Text style={{backgroundColor:"red"
+            ,width:20,height:20,padding:2,position:"absolute",top:0,right:-1,textAlign:"center"
+            ,borderRadius:50,color:"white",alignContent:"center",alignItems:"center",justifyContent:"center",
+          }}>
+          {selectedProductsInCart.length}</Text>
+        )}
+
+
       </View>
       {errorState ? <Text style={{ color: 'red' }}>{errorState}</Text> : null}
 
@@ -89,18 +107,13 @@ useEffect(() => {
 
 
 
-<TouchableOpacity style={{}} onPress={addUser}>
-  <Text style={{}}>Add Test Data</Text>
-  </TouchableOpacity>
-
+  <FontAwesome5 name="cart-plus" size={24} color="black" />
 
       <SearchField text={text} onChangeText={onChangeText} />
 
       <View style={styles.sliderContainer}>
         <HomeSlider />
       </View>
-
-      <Text>{text}</Text>
 
       <View>
         <ScrollView style={styles.scrollView}  horizontal>
@@ -111,7 +124,7 @@ useEffect(() => {
           {TrendDishData?.map((dish) => {
             return (
               <View style={styles.DishCard}>
-                <DishCard dish={dish} />
+                <DishCardHome dish={dish} />
               </View>
             )
           })
