@@ -101,13 +101,10 @@ useEffect(() => {
       </View>
       {errorState ? <Text style={{ color: 'red' }}>{errorState}</Text> : null}
 
-<TouchableOpacity style={{ backgroundColor: "green"}} onPress={AddAllDish}>
-  <Text style={{}}>AddAllDish</Text>
-</TouchableOpacity>
 
 
 
-  <FontAwesome5 name="cart-plus" size={24} color="black" />
+
 
       <SearchField text={text} onChangeText={onChangeText} />
 
